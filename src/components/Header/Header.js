@@ -5,7 +5,8 @@ import "./header.css";
 class Header extends Component {
   constructor(props) {
     super(props);
-
+    this.state = { clicked: false }
+    
     this["navLinks"] = React.createRef();
     this.refers = {};
 
@@ -27,6 +28,7 @@ class Header extends Component {
   }
 
   openMenu(event) {
+    this.setState({ clicked: !this.state.clicked})
     event.stopPropagation();
     this["navLinks"].current.classList.toggle("nav-links-active");
     for (const ref in this.refers) {
@@ -94,9 +96,10 @@ class Header extends Component {
             <h3 className="logo-name">Feedback Analysis</h3>
           </nav>
           <div id="menu-bar" onClick={this.openMenu}>
-            <div className="stick s1"></div>
+            {/* <div className="stick s1"></div>
             <div className="stick s2"></div>
-            <div className="stick s3"></div>
+            <div className="stick s3"></div> */}
+            <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
           </div>
           <ul className={"nav-links"} ref={this["navLinks"]}>
             {liElements}
