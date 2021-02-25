@@ -34,7 +34,7 @@ header {
 
 .bg-svg {
     position: absolute;
-    top: -20px;
+    top: -10px;
     left: 0;
     z-index: 4;
     animation: drop-bg;
@@ -54,7 +54,7 @@ header {
     grid-row: 1;
     grid-column: 2/3;
     background-color: transparent;
-    padding-top: 1%;
+    /* padding-top: 1%; */
     overflow-y: hidden;
     z-index: 5;
 }
@@ -65,12 +65,11 @@ header {
 
 .nav-logo .logo-name {
     margin-left: 2%;
-    font-size: 28px;
+    font-size: 22px;
 }
 
 .nav-links {
-    height: 10vh;
-   
+    height: 3.3rem;
     grid-row: 1/2;
     grid-column: 3/4;
     display: flex;
@@ -79,6 +78,7 @@ header {
     list-style: none;
     text-decoration: none;
     background-color: transparent;
+    align-self: flex-start;
     z-index: 5;
     color:rgba(63, 61, 86, 1);
     text-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
@@ -104,7 +104,7 @@ header {
 }
 
 .menu-text {
-    font-size: 28px;
+    font-size: 22px;
     color: #1D3557;
 }
 
@@ -123,7 +123,7 @@ li, .nav-logo h3 {
 }
 
 .active {
-    border-bottom: 5px solid #00BFA6;
+    border-bottom: 3.5px solid #00BFA6;
     font-weight: bold;
     border-radius : 0% 100% 0% 100% / 100% 100% 0% 0% ;
 }
@@ -196,7 +196,7 @@ li, .nav-logo h3 {
         /* rgba(77, 210, 193, 0.4) */
         height: 100vh;
         width: 100%;
-        padding-top: 9vh;
+        padding-top: 4.715rem;
         flex-direction: column;
         clip-path: circle(100px at 90% -30%);
         -webkit-clip-path: circle(100px at 90% -30%);

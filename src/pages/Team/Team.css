@@ -1,17 +1,9 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    
-}
-
-
 section {
-    padding :9rem 0;
+    padding: 9rem 0;
     background-color: #fff;
 }
-.heading{
+
+.heading {
     text-transform: uppercase;
     font-size: 28px;
     letter-spacing: 2px;
@@ -19,11 +11,12 @@ section {
     margin-bottom: 2.5rem;
     text-align: center;
     color: rgba(63, 61, 86, 1);
-    position: relative;
+    /* position: relative; */
 }
-.heading::after{
-    content:"";
-    width :8rem;
+
+/* .heading::after {
+    content: "";
+    width: 8rem;
     height: .4rem;
     background-color: #45e19f;
     position: absolute;
@@ -31,125 +24,132 @@ section {
     left: 50%;
     transform: translateX(-50%);
     border-radius: 2rem;
-}
-.card-wrapper{
+} */
+
+.card-wrapper {
     display: flex;
     align-items: center;
     align-content: center;
     flex-direction: column;
 }
-.card{
-    width:26rem;
+
+.card {
+    width: 26rem;
     background-color: #ebeef8;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin:2rem 0;
-    box-shadow: .5rem .5rem 2rem rgba(0,0,0,0.2);
-
+    margin: 2rem 0;
+    box-shadow: .5rem .5rem 2rem rgba(0, 0, 0, 0.2);
 }
-.card .card-img{
+
+.card .card-img {
     width: 100%;
     height: 15rem;
     object-fit: cover;
-    -webkit-clip-path: polygon(0 0,100% 0,100% 73%, 0% 100%);
-    clip-path: polygon(0 0, 100% 0, 100% 77%, 0 100%);
+    /* -webkit-clip-path: polygon(0 0, 100% 0, 100% 73%, 0% 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 77%, 0 100%); */
 }
+
 .profile-img {
     width: 15rem;
     height: 15rem;
     object-fit: cover;
     border-radius: 50%;
     margin-top: -11rem;
-    z-index :999;
+    /* z-index: 999; */
     border: .5rem solid #ebeef8
 }
-.card h1{
+
+.card h1 {
     font-size: 28px;
     color: #333;
-    margin : 1.5rem 0;
-
+    margin: 1.5rem 0;
 }
-.role{
-    color:#777;
+
+.role {
+    color: #777;
     font-size: 22px;
     font-weight: 300;
 }
 
-.about{
-    font-size:20px;
-    margin:1.5rem 0;
+.about {
+    font-size: 20px;
+    margin: 1.5rem 0;
     font-style: italic;
     text-align: center;
-    color :#333;
-
+    color: #333;
 }
-a{
+
+a {
     text-decoration: none;
-    color :#fff;
+    color: #fff;
 }
 
-.card .btn{
+.card .btn {
     padding: 0.6rem 1.7rem;
     background-color: #45BDAE;
     border-radius: 2rem;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
-    color:#eee;
+    color: #eee;
     font-size: 18px;
     transition: all 0.5s;
 }
-.card:hover{
+
+/* .card:hover {
     transform: translateY(-2px);
     transition: 0.3s;
-}
+} */
 
-.card .btn:hover{
+.card .btn:hover {
     transform: translateY(-2px);
-    box-shadow: .5rem .5rem 2rem rgba(0,0,0,0.2);
-
+    box-shadow: .5rem .5rem 2rem rgba(0, 0, 0, 0.2);
 }
 
-.card .btn:active{
+.card .btn:active {
     transform: translateY(0);
     box-shadow: none;
 }
 
-@media screen and (min-width:700px){
-    .card-wrapper{
+@media screen and (min-width:700px) {
+    .card-wrapper {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
         align-items: cente;
     }
-    .card{
+    .card {
         margin: 2rem;
     }
-
     @keyframes fadeIn {
-        from{
+        from {
             opacity: 0;
         }
-        to{
+        to {
             opacity: 1;
         }
     }
-    .card:nth-child(1){
+    .card:nth-child(1) {
         animation: fadeIn .5s .5s backwards;
     }
-    .card:nth-child(2){
+    .card:nth-child(2) {
         animation: fadeIn .5s .8s backwards;
     }
-    .card:nth-child(3){
-        animation:fadeIn .5s 1.1s backwards;
+    .card:nth-child(3) {
+        animation: fadeIn .5s 1.1s backwards;
     }
-    .card:nth-child(4){
-        animation:fadeIn .5s 1.5s backwards;
+    .card:nth-child(4) {
+        animation: fadeIn .5s 1.5s backwards;
     }
-    .card:nth-child(5){
-        animation:fadeIn .5s 2s backwards;
+    .card:nth-child(5) {
+        animation: fadeIn .5s 2s backwards;
     }
-}    
-    
+}
 
+@media screen and (max-width:450px) {
+    .card {
+        width: 23rem;
+    }
+}
