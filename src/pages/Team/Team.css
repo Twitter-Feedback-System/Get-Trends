@@ -1,5 +1,5 @@
 section {
-    padding: 9rem 0;
+    padding: 7rem 0;
     background-color: #fff;
 }
 
@@ -59,24 +59,29 @@ section {
     border-radius: 50%;
     margin-top: -11rem;
     /* z-index: 999; */
-    border: .5rem solid #ebeef8
+    border: .5rem solid #ebeef8;
+    
 }
+/* .card:hover .profile-img{
+    transform: scale(1.1); 
+    transition: 0.5s all ease-in-out; 
+} */
 
 .card h1 {
     font-size: 28px;
     color: #333;
-    margin: 1.5rem 0;
+    margin: 0.5rem 0;
 }
 
 .role {
     color: #777;
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 300;
 }
 
 .about {
     font-size: 20px;
-    margin: 1.5rem 0;
+    margin: 1rem 0;
     font-style: italic;
     text-align: center;
     color: #333;
@@ -111,6 +116,29 @@ a {
 .card .btn:active {
     transform: translateY(0);
     box-shadow: none;
+}
+.social-media{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    padding: 1rem 7rem;
+    /* margin-top: 1.5rem; */
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+.social-media i{
+    font-size: 2.5rem;
+    transition: color 0.5s;
+}
+.fa-github-square{
+    color:#211F1F;
+}
+.fa-linkedin{
+    color:#0E76A8
+}
+.fa-github-square:hover,
+.fa-linkedin:hover{
+    color:#45BDAE
 }
 
 @media screen and (min-width:700px) {

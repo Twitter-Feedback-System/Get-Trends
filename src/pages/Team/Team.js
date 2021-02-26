@@ -12,11 +12,11 @@ import Profileurl from '../../assets/Profile/profile-bg.jpg'
         super(props);
         this.state = { 
            profile : [
-              { id: 1, Name: 'Ali', Role: 'Backend Developer', Imgurl: imgAli, Giturl: "https://github.com/Aliabbas78692", About: " aeeyhezr erhj ez ezj eruez u ksgbskjb ukhbjk esgksngsje " },
-              { id: 2, Name: 'Nikunj', Role: 'Frontend Developer', Imgurl: imgNikunj, Giturl: "https://github.com/Nikunj018", About: " aeeyhezr erhj ez ezj eruez u ksgbskjb ukhbjk esgksngsje " },
-              { id: 3, Name: 'Vaspar', Role: 'Full stack Developer', Imgurl: imgVaspar, Giturl: "https://github.com/Vaspar-a", About: " Haeeyhezr erhj ez ezj eruez u ksgbskjb ukhbjk esgksngsje " },
-              { id: 4, Name: 'Rishabh', Role: 'Frontend Developer', Imgurl: imgRishabh, Giturl: "https://github.com/Rain1213", About: " aeeyhezr erhj ez ezj eruez u ksgbskjb ukhbjk esgksngsje" },
-              { id: 5, Name: 'Vidit', Role: 'Backend Developer', Imgurl: imgVidit, Giturl: "https://github.com/Vidit631", About: "aeeyhezr erhj ez ezj eruez u ksgbskjb ukhbjk esgksngsje" }
+              { id: 1, Name: 'Ali', Role: 'Backend Developer', Imgurl: imgAli, Giturl: "https://github.com/Aliabbas78692", LinkedInurl:"https://www.linkedin.com/in/aliabbas-attarwala-71b010176/", About: " aeeyhezr erhj ez ezj eruez u ksgbskjb ukhbjk esgksngsje " },
+              { id: 2, Name: 'Nikunj', Role: 'Frontend Developer', Imgurl: imgNikunj, Giturl: "https://github.com/Nikunj018", LinkedInurl:"https://www.linkedin.com/in/nikunj-delavadiya-4544b518b/", About: " aeeyhezr erhj ez ezj eruez u ksgbskjb ukhbjk esgksngsje " },
+              { id: 3, Name: 'Vaspar', Role: 'Full stack Developer', Imgurl: imgVaspar, Giturl: "https://github.com/Vaspar-a", LinkedInurl:"https://www.linkedin.com/in/vaspar-a-9a189a121/", About: " Haeeyhezr erhj ez ezj eruez u ksgbskjb ukhbjk esgksngsje " },
+              { id: 4, Name: 'Rishabh', Role: 'Frontend Developer', Imgurl: imgRishabh, Giturl: "https://github.com/Rain1213", LinkedInurl:"https://www.linkedin.com/in/rishabh-balse-ab5018207/", About: " aeeyhezr erhj ez ezj eruez u ksgbskjb ukhbjk esgksngsje" },
+              { id: 5, Name: 'Vidit', Role: 'Backend Developer', Imgurl: imgVidit, Giturl: "https://github.com/Vidit631", LinkedInurl:"#", About: "aeeyhezr erhj ez ezj eruez u ksgbskjb ukhbjk esgksngsje" }
            ]
         }
      }
@@ -40,7 +40,12 @@ import Profileurl from '../../assets/Profile/profile-bg.jpg'
                                 <p className= "about">
                                   {item.About}
                                 </p>
-                                <a href={item.Giturl} className="btn">contact</a>
+                                {/* <a href={item.Giturl} className="btn">contact</a> */}
+                                <ul className="social-media">
+                                    {/* <li><a href=""><i class="fab fa-twitter-square"></i></a></li> */}
+                                    <li><a href={item.Giturl} target="_blank"><i class="fab fa-github-square"></i></a></li>
+                                    <li><a href={item.LinkedInurl} target="_blank"><i className="fab fa-linkedin"></i></a></li>
+                                </ul>
                             </div>
                               )
                           })}
