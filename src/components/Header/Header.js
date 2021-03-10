@@ -10,21 +10,11 @@ class Header extends Component {
     this["navLinks"] = React.createRef();
     this.refers = {};
 
-    this.handleOnClickLi = this.handleOnClickLi.bind(this);
     this.openMenu = this.openMenu.bind(this);
 
     this.props.menus.forEach((menu) => {
       this["refers"][menu.text] = React.createRef();
     });
-  }
-
-  handleOnClickLi(event) {
-    event.stopPropagation();
-    this.activeMenu.current.classList.remove("active");
-    this.activeMenu = this.refers[event.target.parentNode.parentNode.id];
-    this.activeMenu.current.classList.add("active");
-
-    this.openMenu(event);
   }
 
   openMenu(event) {
@@ -50,7 +40,7 @@ class Header extends Component {
             ref={this["refers"][menu.text]}
             id={menu.text}
             key={menu.text}
-            onClick={this.handleOnClickLi}
+            // onClick={this.handleOnClickLi}
           >
             <Link to={menu.link} className="list-style">
               {/* <img className={"menu-img"} src={menu.img} alt={menu.alt}></img> */}
@@ -64,7 +54,7 @@ class Header extends Component {
             ref={this["refers"][menu.text]}
             id={menu.text}
             key={menu.text}
-            onClick={this.handleOnClickLi}
+            // onClick={this.handleOnClickLi}
           >
             <Link to={menu.link} className="list-style">
               {/* <img className={"menu-img"} src={menu.img} alt={menu.alt}></img> */}

@@ -99,7 +99,7 @@
     display: block;
   } */
   .homeSVG{
-    position: relative;
+    /* position: relative; */
     /* top: 267px;  */
     bottom: -90px;
     max-width: 100%;

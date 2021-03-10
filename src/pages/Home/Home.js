@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import Header from '../../components/Header/Header';
 import './Home.css'
-import homesvg from '../../assets/images/homeSVG.svg'
+// import homesvg from '../../assets/images/Homesvg.svg'
+
+const menus = [{text: 'Home', link: 'home'}, {text: 'Search', link: 'search'}, {text: 'Team', link: 'team'}];
 
 export default class Home extends Component {
     render() {
         return (
+            <>
+            <Header menus={menus} />
             <section>
                 <div className="row">
                     <div className="column left">
@@ -82,7 +87,7 @@ export default class Home extends Component {
                             </g>
                             </g>
                             <g id="Vector_37">
-                            <path id="Vector_38" d="M848.412 283.914H0V691H848.412V283.914Z" fill="#00BFA6" fill-opacity="0.7"/>
+                            <path id="Vector_38" d="M848.412 283.914H0V691H848.412V283.914Z" fill="#00BFA6" fillOpacity="0.7"/>
                             </g>
                             <path id="Vector_39" d="M150.498 461C152.754 461 154.582 459.151 154.582 456.87C154.582 454.589 152.754 452.74 150.498 452.74C148.243 452.74 146.414 454.589 146.414 456.87C146.414 459.151 148.243 461 150.498 461Z" fill="#3F3D56"/>
                             <path id="Vector_40" d="M164.501 461C166.756 461 168.585 459.151 168.585 456.87C168.585 454.589 166.756 452.74 164.501 452.74C162.245 452.74 160.417 454.589 160.417 456.87C160.417 459.151 162.245 461 164.501 461Z" fill="#3F3D56"/>
@@ -164,7 +169,7 @@ export default class Home extends Component {
                     </div>
                 </div>
             </section>
-                
+            </>
         )
     }
 }

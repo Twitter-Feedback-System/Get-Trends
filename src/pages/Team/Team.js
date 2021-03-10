@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
+import Header from '../../components/Header/Header';
 import './Team.css'
 import imgAli from '../../assets/Profile/Ali.jpg'
 import imgNikunj from '../../assets/Profile/Nikunj.jpg'
 import imgVaspar from '../../assets/Profile/Vaspar.jpg'
 import imgRishabh from '../../assets/Profile/Rishabh.jpg'
 import imgVidit from '../../assets/Profile/Vidit.jpg'
-
 import Profileurl from '../../assets/Profile/profile-bg.jpg'
+
+const menus = [{text: 'Home', link: 'home'}, {text: 'Search', link: 'search'}, {text: 'Team', link: 'team'}];
+
  class Team extends Component {
     constructor(props) {
         super(props);
@@ -26,6 +29,7 @@ import Profileurl from '../../assets/Profile/profile-bg.jpg'
    
         return (
             <>
+                <Header menus={menus} />
                 <section>
                     <div className = "container">
                         <h1 className="heading">Meet The Team</h1>
@@ -43,7 +47,7 @@ import Profileurl from '../../assets/Profile/profile-bg.jpg'
                                 {/* <a href={item.Giturl} className="btn">contact</a> */}
                                 <ul className="social-media">
                                     {/* <li><a href=""><i class="fab fa-twitter-square"></i></a></li> */}
-                                    <li><a href={item.Giturl} target="_blank"><i class="fab fa-github-square"></i></a></li>
+                                    <li><a href={item.Giturl} target="_blank"><i className="fab fa-github-square"></i></a></li>
                                     <li><a href={item.LinkedInurl} target="_blank"><i className="fab fa-linkedin"></i></a></li>
                                 </ul>
                             </div>

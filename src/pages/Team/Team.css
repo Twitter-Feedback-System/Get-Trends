@@ -85,6 +85,7 @@ section {
     font-style: italic;
     text-align: center;
     color: #333;
+    padding-inline: 0.25rem;
 }
 
 a {
@@ -178,6 +179,6 @@ a {
 
 @media screen and (max-width:450px) {
     .card {
-        width: 23rem;
+        width: 90%;
     }
 }
