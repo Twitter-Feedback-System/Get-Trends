@@ -17,14 +17,14 @@ export default class Search extends Component {
                             <form>
                                 <div className="textInput">
                                     <input type="text" placeholder="Enter Keyword/Tag to search about"></input>
-                                    <div className="icnSearch">                                    
-                                        <i class="fas fa-search"></i>                                                                        
+                                    <div>                                    
+                                        <i className="icnSearch" class="fas fa-search"></i>                                                                        
                                     </div>
                                 </div>
                                 <div className="textInput">
                                     <input type="text" placeholder="Enter how many tweets to search"></input>
-                                    <div className="icnSearch">
-                                        <i class="fas fa-hashtag"></i>                                               
+                                    <div >
+                                        <i className="icnSearch" class="fas fa-hashtag"></i>                                               
                                     </div>
                                 </div>
                             </form>
