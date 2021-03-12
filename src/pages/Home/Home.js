@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
+import Button from '../../components/Button/Button';
 import Header from '../../components/Header/Header';
 import './Home.css'
 // import homesvg from '../../assets/images/Homesvg.svg'
@@ -25,7 +26,7 @@ export default class Home extends Component {
                         </div>
                         <br></br>
                         <NavLink to="/search">
-                        <button className="btn"><span>Get Started</span></button>
+                        <Button text="Get Started" />
                         </NavLink>
                         {/* <svg className="homeLeftsvg" width="640" height="230" viewBox="0 0 640 230" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M491.721 408.792C446.421 456.033 302.222 444.088 164.809 420.12C27.3954 396.152 -76.0884 331.363 -66.3289 275.411C-56.5694 219.459 461.5 66.9999 583.771 105.925C683.5 163.5 591.313 304.933 491.721 408.792Z" fill="#4DD2C1" fill-opacity="0.4"/>

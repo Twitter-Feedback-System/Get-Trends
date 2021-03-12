@@ -1,93 +1,20 @@
-  
   .column {
     float: left;
+    animation: text 2s ease;
   }
-.left{
+
+  .left {
     width: 40%;
-}
-.right{
-    width: 60%;
-    text-align: center;
-    /* overflow:visible; */
-    /* padding: 50px; */
-}
-  
-/* .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  } */
-.left{
     padding-left: 80px;
     padding-top: 70px;
-}
-.line-1::after{
-    content: "\a";
-    white-space: pre;
-}
-.title{
-    font-size: 58px;
-    align-items: center;
-    color: #3F3D56;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    animation: text 2s ease;
-}
+  }
 
-
-
-.title .bold{
-    color:#45BDAE;
-}
-.description{
-    font-size: 28px;
-    color: #3F3D56;
-    animation: text 2s ease;
-}
-.btn{
-    border-radius: 4px;
-    background-color: #00BFA6;;
-    border: none;
-    color: #FFFFFF;
+  .right {
+    width: 60%;
     text-align: center;
-    font-size: 24px;
-    padding: 18px;
-    width: 220px;
-    
-    cursor: pointer;
-    
-    box-shadow :0px 4px 4px rgba(0, 0, 0, 0.25);
-    animation: text 2s ease;
-}
-.btn span{
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-}
-  
-.btn span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
   }
-  
-.btn:hover span {
-    padding-right: 25px;
-  }
-  
-.btn:hover span:after {
-    opacity: 1;
-    right: 0;
-  }
-  /* .homeLeftsvg{
-    bottom: 0;
-    overflow: hidden;
-    display: block;
-  } */
-  .searchSVG{
+
+  .searchSVG {
     /* position: relative; */
     /* top: 267px;  */
     bottom: -90px;
@@ -95,348 +22,151 @@
     height: auto;
   }
 
-.textInput{
-  background-color: #00BFA6;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 70px;
-  width: 650px;
-  border-radius: 50px;
-  margin-bottom: 40px;
-  padding-left: 15px;
-  padding-right: 10px;
-  
-}
-input{
-  font-family: Poppins;
-  font-size: 28px;
-  color: #000;
-  height: 50px;
-  width: 550px;
-  padding: 8px;
-  border-radius: 50px 0px 0px 50px;
-    
-}
-
-.fa-search,.fa-hashtag{
-  color: #fff;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  font-size: 50px;
-  width: 65px;
-  height: 75px;
-  z-index: -11;
-}
-
-@media screen and (max-width: 1300px) {
-  .textInput{
-    background-color: #00BFA6;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 70px;
-    width: 470px;
-    border-radius: 50px;
-    margin-bottom: 40px;
-    padding-left: 15px;
-    padding-right: 10px;
-    
-  }
-  input{
-    font-family: Poppins;
-    font-size: 20px;
-    color: #000;
-    height: 50px;
-    width: 380px;
-    padding: 8px;
-    border-radius: 50px 0px 0px 50px;
-      
-  }
-  
-  .fa-search,.fa-hashtag{
-    color: #fff;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    font-size: 40px;
-    width: 50px;
-    height: 75px;
-    z-index: -11;
-  }
-} 
-
-@media screen and (max-width: 1000px) {
-
+  @media screen and (max-width: 1000px) {
     .column {
       width: 100%;
     }
-    .left{
+    .left {
       padding: 0px 50px 10px 50px;
       /* top:-100px; */
     }
-    .right{
+    .right {
       top: 50px;
       padding-left: 20px;
     }
-    .title{
-      font-size: 42px;
-    }
-    .description{
-      font-size: 22px;
-    }
-    .line-1::after{
-      content: "\a";
-      white-space: normal;
-    }
-    .btn{
-      font-size: 22px;
-      padding: 12px;
-      width: 175px;
-    }
-    .btn span{
-      display: inline;
-      position: relative;
-    }
-    .homeSVG{
-      width: 713px;
-      height: 535px;
-      bottom: 0;
-      height: 100%;
-    }
-    
-    .textInput{
-      background-color: #00BFA6;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 70px;
-      width: 470px;
-      border-radius: 50px;
-      margin-bottom: 40px;
-      padding-left: 15px;
-      padding-right: 10px;
-      
-    }
-    input{
-      font-family: Poppins;
-      font-size: 20px;
-      color: #000;
-      height: 50px;
-      width: 380px;
-      padding: 8px;
-      border-radius: 50px 0px 0px 50px;
-        
-    }
-    
-    .fa-search,.fa-hashtag{
-      color: #fff;
-      filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-      font-size: 40px;
-      width: 50px;
-      height: 60px;
-      
-    }
-    
   }
+
   @media screen and (max-width: 513px) {
-    .title{
-      font-size: 38px;
-    }
-    .description{
-      font-size: 18px;
-    }
-    .left{
+    .left {
       padding: 0px 30px 10px 30px;
     }
-    .right{
+    .right {
       padding-top: 20px;
     }
-    .line-1::after{
-      content: "\a";
-      white-space: normal;
-    }
-    .btn{
-      font-size: 20px;
-      padding: 10px;
-      width: 155px;
-    }
-
-    .textInput{
-      background-color: #00BFA6;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 58px;
-      width: 350px;
-      border-radius: 50px;
-      margin-bottom: 28px;
-      padding-left: 15px;
-      padding-right: 10px;
-      
-      
-    }
-    input{
-      font-family: Poppins;
-      font-size: 16px;
-      color: #000;
-      height: 40px;
-      width: 300px;
-      padding: 8px;
-      border-radius: 50px 0px 0px 50px;
-        
-    }
-    input:focus{
-      outline: none;
-      border: none;
-      }
-    
-  .fa-search,.fa-hashtag{
-      color: #fff;
-      
-      font-size: 30px;
-      width: 40px;
-      height: 50px;
-            
-    }
-    
   }
-  
 
+  @keyframes text {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
-@keyframes text{
-  from{
+  @keyframes tweetAni {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes pieChart {
+    0% {
+      transform: rotateZ(0deg);
+    }
+    100% {
+      transform: rotateZ(360deg);
+    }
+  }
+
+  @keyframes pie1Chart {
+    0% {
+      fill: #00BFA6;
+    }
+    33% {
+      fill: #3F3D56;
+    }
+    66% {
+      fill: #575A89;
+    }
+    100% {
+      fill: #00BFA6;
+    }
+  }
+
+  @keyframes pie2Chart {
+    0% {
+      fill: #575A89;
+    }
+    33% {
+      fill: #00BFA6;
+    }
+    66% {
+      fill: #3F3D56;
+    }
+    100% {
+      fill: #575A89;
+    }
+  }
+
+  @keyframes pie3Chart {
+    0% {
+      fill: #3F3D56;
+    }
+    33% {
+      fill: #575A89;
+    }
+    66% {
+      fill: #00BFA6;
+    }
+    100% {
+      fill: #3F3D56;
+    }
+  }
+
+  @keyframes hand {
+    0% {
+      transform: rotateZ(0deg);
+    }
+    100% {
+      transform: rotateZ(2deg);
+    }
+  }
+
+  @keyframes head {
+    0% {
+      transform: rotateZ(0deg);
+    }
+    100% {
+      transform: rotateZ(-2deg);
+    }
+  }
+
+  #TweetID {
+    animation: tweetAni 3s 0.9s alternate infinite linear;
     opacity: 0;
   }
-  to{
-    opacity: 1;
-  }
-}
-@keyframes tweetAni{
-  0%{
-    opacity: 0;
-  }
-  50%{
-    opacity: 0.5;
-  }
-  100%{
-    opacity: 1;
-  }
-}
 
-@keyframes pieChart{
-    0%{
-        transform: rotateZ(0deg);
-    }
-
-    100%{
-        transform: rotateZ(360deg);
-
-    }
-}
-@keyframes pie1Chart{
-    0%{
-        fill:#00BFA6;
-    }
-
-    33%{
-        fill:#3F3D56;
-    }
-
-    66%{
-        fill:#575A89;
-    }
-    100%{
-        fill:#00BFA6;
-    }
-
-}
-@keyframes pie2Chart{
-    0%{
-        fill:#575A89;
-    }
-
-    33%{
-        fill:#00BFA6;
-    }
-
-    66%{
-        fill:#3F3D56;
-    }
-
-    100%{
-        fill:#575A89;
-    }
-
-}
-@keyframes pie3Chart{
-    0%{
-        fill:#3F3D56;
-    }
-
-    33%{
-        fill:#575A89;
-    }
-
-    66%{
-        fill:#00BFA6;
-    }
-
-    100%{
-        fill:#3F3D56;
-    }
-
-}
-
-@keyframes hand{
-    0%{
-        transform: rotateZ(0deg);
-    }
-    100%{
-        transform: rotateZ(2deg);
-    }
-}
-
-@keyframes head{
-    0%{
-        transform: rotateZ(0deg);
-    }
-    100%{
-        transform: rotateZ(-2deg);
-        
-    }
-}
-
-
-
-
-
-#TweetID{
-  animation: tweetAni 3s 0.9s alternate infinite linear;
-  opacity: 0;
-}
-
-#PieID{
+  #PieID {
     animation: pieChart 10s infinite linear;
     transform-origin: center;
     transform-box: fill-box;
-}
+  }
 
-#Pie1ID{
+  #Pie1ID {
     animation: pie1Chart 9s infinite linear;
-}
+  }
 
-#Pie2ID{
+  #Pie2ID {
     animation: pie2Chart 9s infinite linear;
-}
+  }
 
-#Pie3ID{
+  #Pie3ID {
     animation: pie3Chart 9s infinite linear;
-}
+  }
 
-#HandID{
+  #HandID {
     animation: hand 2s alternate infinite linear;
     transform-origin: right;
-}
+  }
 
-#HeadID{
+  #HeadID {
     animation: head 2s alternate infinite linear;
-    transform-origin: right;  
-}
+    transform-origin: right;
+  }

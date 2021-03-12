@@ -1,252 +1,183 @@
-/* .heading {
-    text-transform: uppercase;
-    font-size: 28px;
-    letter-spacing: 2px;
-    margin-bottom: 2.5rem;
-    text-align: center;
-    color: rgba(63, 61, 86, 1);
-    position: relative;
-} */
-
-/* section{
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-  } */
-  
 .column {
-    float: left;
-  }
-.left{
-    width: 40%;
+  float: left;
 }
-.right{
-    width: 60%;
-    text-align: center;
-    /* overflow:visible; */
-    /* padding: 50px; */
-}
-  
-/* .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  } */
-.left{
-    padding-left: 80px;
-    padding-top: 100px;
-}
-.line-1::after{
-    content: "\a";
-    white-space: pre;
-}
-.title{
-    font-size: 58px;
-    align-items: center;
-    color: #3F3D56;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    animation: text 2s ease;
-}
-.title .bold{
-    color:#45BDAE;
-}
-.description{
-    font-size: 28px;
-    color: #3F3D56;
-    animation: text 2s ease;
-}
-.btn{
-    border-radius: 4px;
-    background-color: #00BFA6;;
-    border: none;
-    color: #FFFFFF;
-    text-align: center;
-    font-size: 24px;
-    padding: 18px;
-    width: 220px;
-    /* transition: all 0.5s; */
-    cursor: pointer;
-    /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
-    box-shadow :0px 4px 4px rgba(0, 0, 0, 0.25);
-    animation: text 2s ease;
-}
-.btn span{
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-}
-  
-.btn span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-  }
-  
-.btn:hover span {
-    padding-right: 25px;
-  }
-  
-.btn:hover span:after {
-    opacity: 1;
-    right: 0;
-  }
-  /* .homeLeftsvg{
-    bottom: 0;
-    overflow: hidden;
-    display: block;
-  } */
-  .homeSVG{
-    /* position: relative; */
-    /* top: 267px;  */
-    bottom: -90px;
-    max-width: 100%;
-    height: auto;
-  }
-  
-@media screen and (max-width: 860px) {
 
-    .column {
-      width: 100%;
-    }
-    .left{
-      padding: 0px 50px 10px 50px;
-      /* top:-100px; */
-    }
-    .right{
-      top: 50px;
-      padding-left: 20px;
-    }
-    .title{
-      font-size: 42px;
-    }
-    .description{
-      font-size: 22px;
-    }
-    .line-1::after{
-      content: "\a";
-      white-space: normal;
-    }
-    .btn{
-      font-size: 22px;
-      padding: 12px;
-      width: 175px;
-    }
-    .btn span{
-      display: inline;
-      position: relative;
-    }
-    .homeSVG{
-      width: 713px;
-      height: 535px;
-      bottom: 0;
-      height: 100%;
-    }
+.left {
+  width: 40%;
+  padding-left: 80px;
+  padding-top: 100px;
+}
+
+.right {
+  width: 60%;
+  text-align: center;
+}
+
+.line-1::after {
+  content: "\a";
+  white-space: pre;
+}
+
+.title {
+  font-size: 58px;
+  align-items: center;
+  color: #3F3D56;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  animation: text 2s ease;
+}
+
+.title .bold {
+  color: #45BDAE;
+}
+
+.description {
+  font-size: 28px;
+  color: #3F3D56;
+  animation: text 2s ease;
+}
+
+.homeSVG {
+  /* position: relative; */
+  /* top: 267px;  */
+  bottom: -90px;
+  max-width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 860px) {
+  .column {
+    width: 100%;
   }
-  @media screen and (max-width: 513px) {
-    .title{
-      font-size: 38px;
-    }
-    .description{
-      font-size: 18px;
-    }
-    .left{
-      padding: 0px 30px 10px 30px;
-    }
-    .right{
-      padding-top: 20px;
-    }
-    .line-1::after{
-      content: "\a";
-      white-space: normal;
-    }
-    .btn{
-      font-size: 20px;
-      padding: 10px;
-      width: 155px;
-    }
-    
+  .left {
+    padding: 0px 50px 10px 50px;
+    /* top:-100px; */
   }
-  
-/* #Tweets{
- animation: bounce1 3s infinite ease;
-} */
-#tweet1{
+  .right {
+    top: 50px;
+    padding-left: 20px;
+  }
+  .title {
+    font-size: 42px;
+  }
+  .description {
+    font-size: 22px;
+  }
+  .line-1::after {
+    content: "\a";
+    white-space: normal;
+  }
+  .homeSVG {
+    width: 713px;
+    height: 535px;
+    bottom: 0;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 513px) {
+  .title {
+    font-size: 38px;
+  }
+  .description {
+    font-size: 18px;
+  }
+  .left {
+    padding: 0px 30px 10px 30px;
+  }
+  .right {
+    padding-top: 20px;
+  }
+  .line-1::after {
+    content: "\a";
+    white-space: normal;
+  }
+}
+
+#tweet1 {
   animation: bounce 7s infinite ease;
 }
-#tweet2{
+
+#tweet2 {
   animation-delay: 1s;
   animation: bounce 9s infinite ease;
 }
- #tweet3{
+
+#tweet3 {
   animation-delay: 3s;
   animation: bounce 8s infinite ease;
 }
 
-#tweet4{
+#tweet4 {
   animation: bounce 6s infinite ease;
 }
-#tweet5{
+
+#tweet5 {
   animation-delay: 2s;
   animation: bounce 7.5s infinite ease;
 }
-#tweet6{
+
+#tweet6 {
   animation-delay: 1s;
   animation: bounce 7s infinite ease;
 }
-@keyframes bounce{
-  0%{
+
+@keyframes bounce {
+  0% {
     transform: translateY(40px);
     opacity: 0;
   }
-  50%{
+  50% {
     transform: translateY(0px);
     opacity: 1;
   }
-  100%{
+  100% {
     opacity: 0;
     transform: translateY(-80px);
   }
 }
 
-@keyframes text{
-  from{
+@keyframes text {
+  from {
     opacity: 0;
   }
-  to{
+  to {
     opacity: 1;
   }
 }
-@keyframes star{
-  0%{
+
+@keyframes star {
+  0% {
     opacity: 0;
   }
-  25%{
+  25% {
     opacity: 1;
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
-#star1{
+
+#star1 {
   animation: star 3s 0.9s alternate infinite linear;
   opacity: 0;
 }
-#star2{
+
+#star2 {
   animation: star 3s 1.3s alternate infinite linear;
   opacity: 0;
 }
-#star3{
+
+#star3 {
   animation: star 3s 1.6s alternate infinite linear;
   opacity: 0;
 }
-#star4{
+
+#star4 {
   animation: star 3s 1.9s alternate infinite linear;
   opacity: 0;
 }
-#star5{
-  animation: star 3s 2.2s alternate infinite linear ;
+
+#star5 {
+  animation: star 3s 2.2s alternate infinite linear;
   opacity: 0;
 }

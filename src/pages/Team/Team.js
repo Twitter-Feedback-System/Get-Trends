@@ -7,6 +7,7 @@ import imgVaspar from '../../assets/Profile/Vaspar.jpg'
 import imgRishabh from '../../assets/Profile/Rishabh.jpg'
 import imgVidit from '../../assets/Profile/Vidit.jpg'
 import Profileurl from '../../assets/Profile/profile-bg.jpg'
+import Card from '../../components/Card/Card';
 
 const menus = [{text: 'Home', link: 'home'}, {text: 'Search', link: 'search'}, {text: 'Team', link: 'team'}];
 
@@ -24,9 +25,7 @@ const menus = [{text: 'Home', link: 'home'}, {text: 'Search', link: 'search'}, {
         }
      }
 
-
     render() {
-   
         return (
             <>
                 <Header menus={menus} />
@@ -35,27 +34,9 @@ const menus = [{text: 'Home', link: 'home'}, {text: 'Search', link: 'search'}, {
                         <h1 className="heading">Meet The Team</h1>
                         <div className = "card-wrapper">
                         {this.state.profile.map((item,index)=>{
-                        return(
-                            <div key = {index}className = "card">
-                                <img src = {Profileurl} className = "card-img" alt="card-img"></img>
-                                <img src = {item.Imgurl} className = "profile-img" alt="profile-img"></img>
-                                <h1>{item.Name}</h1>
-                                <p className= "role">{item.Role}</p>
-                                <p className= "about">
-                                  {item.About}
-                                </p>
-                                {/* <a href={item.Giturl} className="btn">contact</a> */}
-                                <ul className="social-media">
-                                    {/* <li><a href=""><i class="fab fa-twitter-square"></i></a></li> */}
-                                    <li><a href={item.Giturl} target="_blank"><i className="fab fa-github-square"></i></a></li>
-                                    <li><a href={item.LinkedInurl} target="_blank"><i className="fab fa-linkedin"></i></a></li>
-                                </ul>
-                            </div>
-                              )
-                          })}
-
+                            return <Card key={`card-${index}`} item={item} bgImg={Profileurl} />
+                        })}
                         </div>
-
                     </div>
                 </section>
             </>

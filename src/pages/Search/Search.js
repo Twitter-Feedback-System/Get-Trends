@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import Header from '../../components/Header/Header';
+import Button from '../../components/Button/Button';
 import './Search.css'
+import Input from '../../components/Input/Input';
+import Tweet from '../../components/Tweet/Tweet';
 
 const menus = [{text: 'Home', link: 'home'}, {text: 'Search', link: 'search'}, {text: 'Team', link: 'team'}];
 
@@ -13,38 +16,21 @@ export default class Search extends Component {
             <section>
                 <div className="row">
                     <div className="column left">
-                        <div className="title">
-                            <form>
-                                <div className="textInput">
-                                    <input type="text" placeholder="Enter Keyword/Tag to search about"></input>
-                                    <div>                                    
-                                        <i className="icnSearch" class="fas fa-search"></i>                                                                        
-                                    </div>
-                                </div>
-                                <div className="textInput">
-                                    <input type="text" placeholder="Enter how many tweets to search"></input>
-                                    <div >
-                                        <i className="icnSearch" class="fas fa-hashtag"></i>                                               
-                                    </div>
-                                </div>
+                        <div className="form-wrapper">
+                            <form className="form">
+                                <Input placeholder="Enter keyword" icon="fas fa-search" />
+                                <Input placeholder="Enter no of tweets" icon="fas fa-hashtag" />
                             </form>
                         </div>
                         <br></br>
-                        
                         <NavLink to="/search">
-                        <button className="btn"><span>Search</span></button>
+                        <Button text="Search" />
                         </NavLink>
-                        {/* <svg className="homeLeftsvg" width="640" height="230" viewBox="0 0 640 230" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M491.721 408.792C446.421 456.033 302.222 444.088 164.809 420.12C27.3954 396.152 -76.0884 331.363 -66.3289 275.411C-56.5694 219.459 461.5 66.9999 583.771 105.925C683.5 163.5 591.313 304.933 491.721 408.792Z" fill="#4DD2C1" fill-opacity="0.4"/>
-                        </svg> */}
-
                     </div>
                     <div className="column right">
-                        {/* <img className="homeSVG" src={homesvg}></img> */}
-
                         <svg className="searchSVG" width="911" height="691" viewBox="0 0 1201 723" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="VectorartSearch">
-                            <g id="undraw_Personal_goals_re_iow7 (1) 1" clip-path="url(#clip0)">
+                            <g id="undraw_Personal_goals_re_iow7 (1) 1" clipPath="url(#clip0)">
                             <path id="Vector" d="M821.769 466.761C820.826 468.521 819.841 470.25 818.826 471.97C779.869 537.807 689.246 578.696 536.413 557.055C449.636 544.183 412.68 591.397 376.895 639.756C376.283 640.591 375.672 641.426 375.05 642.26C337.575 692.973 300.474 743.827 207.705 726.923C109.359 711.839 48.6641 634.376 39.2721 551.675C39.1577 550.669 39.0544 549.654 38.9608 548.648C33.6844 495.029 49.9908 439.509 91.591 397.595C116.719 372.284 152.421 358.839 189.274 359.261C200.369 359.461 211.461 358.664 222.405 356.878C224.82 356.465 227.163 356.013 229.443 355.5C276.393 345.092 298.028 314.149 311.296 276.389C311.608 275.494 311.919 274.598 312.219 273.693C342.686 183.641 328.598 57.2455 494.233 75.8393C642.451 86.4384 751.226 166.163 804.582 258.147C805.111 259.072 805.639 259.997 806.158 260.922C820.823 286.445 831.287 314.033 837.174 342.689C837.506 344.297 837.806 345.906 838.086 347.515C845.633 390.234 840.688 431.756 821.769 466.761Z" fill="#F2F2F2"/>
                             <path id="Vector_2" d="M806.388 253.69C795.754 265.95 783.772 277.048 770.656 286.785C719.56 324.797 654.842 345.412 590.996 349.736C558.184 351.974 525.211 349.801 493.012 343.28C460.254 336.623 429.01 324.898 398.75 311.201C369.32 297.877 340.761 282.853 311.527 269.157C311.839 268.262 312.149 267.367 312.45 266.462C344.327 281.345 375.551 297.746 407.8 311.925C438.184 325.29 469.636 336.191 502.528 342.023C535.347 347.803 568.841 349.076 602.025 345.804C665.696 339.59 730.465 316.803 779.415 276.035C788.606 268.382 797.103 259.977 804.813 250.915C805.342 251.84 805.87 252.765 806.388 253.69Z" fill="white"/>
                             <g id="PieID">
@@ -112,12 +98,11 @@ export default class Search extends Component {
                             </clipPath>
                             </defs>
                         </svg>
-
-
-
                     </div>
                 </div>
             </section>
+            {/* <Tweet url="https://twitter.com/DSC_Charusat/status/1308349414763708417" />
+            <Tweet url="https://twitter.com/googledevs/status/1276166471920553988" /> */}
             </>
         )
     }
