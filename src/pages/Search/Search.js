@@ -5,10 +5,53 @@ import Button from '../../components/Button/Button';
 import './Search.css'
 import Input from '../../components/Input/Input';
 import Tweet from '../../components/Tweet/Tweet';
+import Chart from '../../components/Chart/Chart';
+import ChartPie from '../../components/Chart/ChartPie';
+import ChartBar from '../../components/Chart/ChartBar';
+
 
 const menus = [{text: 'Home', link: 'home'}, {text: 'Search', link: 'search'}, {text: 'Team', link: 'team'}];
 
 export default class Search extends Component {
+
+   constructor(){
+       super();
+       this.state = {
+           chartData:{}
+       }
+   }
+   componentWillMount(){
+       this.getChartData();
+   }
+
+    getChartData(){
+        // Ajax calls here
+        this.setState({
+        chartData:{
+            labels: ['Positive','Neutral','Negative'],
+            datasets:[
+            {
+                label:'Tweets',
+                data:[
+                4800,
+                2200,
+                3000
+                ],
+                backgroundColor:[
+                'rgba(0, 191, 166, 1)',
+                'rgba(87, 90, 137, 1)',
+                'rgba(63, 61, 86, 1)',
+                'rgba(75, 192, 192, 0.6)',
+                'rgba(153, 102, 255, 0.6)',
+                'rgba(255, 159, 64, 0.6)',
+                'rgba(255, 99, 132, 0.6)'
+                ]
+            }
+            ]
+        }
+        });
+    }
+
     render() {
         return (
             <>
@@ -23,11 +66,14 @@ export default class Search extends Component {
                             </form>
                         </div>
                         <br></br>
-                        <NavLink to="/search">
-                        <Button text="Search" />
-                        </NavLink>
+
+                        <div className="sensorBtn" onClick={this.hideAndShow}>
+                        <Button text="Search" ></Button>
+                        </div>
+                        
                     </div>
                     <div className="column right">
+                        
                         <svg className="searchSVG" width="911" height="691" viewBox="0 0 1201 723" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="VectorartSearch">
                             <g id="undraw_Personal_goals_re_iow7 (1) 1" clipPath="url(#clip0)">
@@ -98,6 +144,11 @@ export default class Search extends Component {
                             </clipPath>
                             </defs>
                         </svg>
+
+                        <div className="chartData">
+                        <ChartPie chartData={this.state.chartData} location="This Week" legendPosition="bottom"/>
+                        <ChartBar chartData={this.state.chartData} location="This Week" legendPosition="bottom"/>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -105,5 +156,17 @@ export default class Search extends Component {
             <Tweet url="https://twitter.com/googledevs/status/1276166471920553988" /> */}
             </>
         )
+    }
+
+    hideAndShow() {
+        var varHide = document.getElementsByClassName("searchSVG");
+            for (var i=0;i<varHide.length;i+=1){
+                varHide[i].style.display = 'none';
+            }
+
+        var varShow = document.getElementsByClassName("chartData");
+            for (var i=0;i<varShow.length;i+=1){
+              varShow[i].style.display = 'block';
+            }
     }
 }
