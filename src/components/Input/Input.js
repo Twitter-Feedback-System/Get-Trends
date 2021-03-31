@@ -1,26 +1,41 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import './Input.css';
 
-const Input = ({ placeholder, icon }) => {
-  const [value, setValue] = useState("");
-  const handleOnChange = (event) => {
-    event.stopPropagation();
-    setValue(event.target.value);
-  };
+class Input extends Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      value: "",
+    }
+
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
+
+  handleOnChange(event) {
+    event.stopPropagation();
+    this.setState({value: event.target.value});
+  }
+
+  get value() {
+    return this.state.value;
+  }
+
+  render() {
   return (
     <div className="textInput">
       <input
         type="text"
-        placeholder={placeholder}
-        value={value}
-        onChange={handleOnChange}
+        placeholder={this.props.placeholder}
+        value={this.state.value}
+        onChange={this.handleOnChange}
       ></input>
       <div className="icon-wrapper">
-        <i className={`icon ${icon}`}></i>
+        <i className={`icon ${this.props.icon}`}></i>
         </div>
     </div>
   );
-};
+  }
+}
 
 export default Input;
