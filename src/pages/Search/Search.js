@@ -4,10 +4,11 @@ import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import "./Search.css";
 import Input from "../../components/Input/Input";
-// import Tweet from '../../components/Tweet/Tweet';
+import Tweet from '../../components/Tweet/Tweet';
 // import Chart from '../../components/Chart/Chart';
 import ChartPie from "../../components/Chart/ChartPie";
-import ChartBar from "../../components/Chart/ChartBar";
+// import ChartBar from "../../components/Chart/ChartBar";
+import { MinPriorityQueue } from '@datastructures-js/priority-queue';
 
 const menus = [
   { text: "Home", link: "home" },
@@ -19,7 +20,25 @@ export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      chartData: {},
+      chartData: {
+        labels: ["Positive", "Neutral", "Negative"],
+        datasets: [
+          {
+            label: "Tweets",
+            backgroundColor: [
+              "rgba(0, 191, 166, 1)",
+              "rgba(87, 90, 137, 1)",
+              "rgba(63, 61, 86, 1)",
+              "rgba(75, 192, 192, 0.6)",
+              "rgba(153, 102, 255, 0.6)",
+              "rgba(255, 159, 64, 0.6)",
+              "rgba(255, 99, 132, 0.6)",
+            ],
+          },
+        ],
+      },
+
+      tweetInfo: [],
     };
 
     this.refers = {
@@ -29,12 +48,14 @@ export default class Search extends Component {
       chartData: createRef(),
     };
 
+    this.top5PositiveTweets = new MinPriorityQueue();
+    this.top5NegativeTweets = new MinPriorityQueue();
+
     this.handleSearch = this.handleSearch.bind(this);
     this.hideAndShow = this.hideAndShow.bind(this);
     this.getResponse = this.getResponse.bind(this);
-
-    this.tweetInfo = [];
-    this.top5PositiveTweets = [];
+    this.getChartData = this.getChartData.bind(this);
+    this.manageHeaps = this.manageHeaps.bind(this);
   }
 
   handleSearch(event) {
@@ -52,41 +73,47 @@ export default class Search extends Component {
   }
 
   getResponse(data) {
-    this.tweetInfo.push(data.body);
-    console.log(this.tweetInfo);
-    this.top5PositiveTweets();
-  }
-
-  top5PositiveTweets() {
-
+    let tweetInfo = this.state.tweetInfo;
+    tweetInfo.push(data);
+    
+    this.manageHeaps({polarity: data.body.tweet['polarity'], polarityScore: data.body.tweet['polarity_score'], url: data.body.tweet['embed_url']});
+    this.getChartData(data.body['total_polarity'], tweetInfo);
   }
 
   componentDidMount() {
-    this.getChartData();
     this.props.clientSocket.setSearchCallback(this.getResponse);
   }
 
-  getChartData() {
-    // Ajax calls here
+  manageHeaps({polarity, polarityScore, url}) {
+    if (polarity === 'positive') {
+      this.top5PositiveTweets.enqueue(url, polarityScore);
+      if (this.top5PositiveTweets.size() > 5) {
+        this.top5PositiveTweets.dequeue();
+        console.log(`Positive: ${this.top5PositiveTweets.back().element}`);
+      }
+    } else if (polarity === 'negative') {
+      this.top5NegativeTweets.enqueue(url, polarityScore);
+      if (this.top5NegativeTweets.size() > 5) {
+        this.top5NegativeTweets.dequeue();
+        console.log(`Negative: ${this.top5NegativeTweets.back().element}`);
+      }
+    }
+  }
+
+  getChartData(polarity, tweetInfo) {
+    const chartData = this.state.chartData;
+    const sum = polarity.positive + polarity.neutral + polarity.negative;
+    
+    polarity = {
+      positive: parseFloat(polarity.positive * 1.0 / sum).toFixed(2)  * 100,
+      neutral: parseFloat(polarity.neutral * 1.0 / sum).toFixed(2)  * 100,
+      negative: parseFloat(polarity.negative * 1.0 / sum).toFixed(2)  * 100,
+    }
+
+    chartData.datasets[0].data = [polarity.positive, polarity.neutral, polarity.negative];
     this.setState({
-      chartData: {
-        labels: ["Positive", "Neutral", "Negative"],
-        datasets: [
-          {
-            label: "Tweets",
-            data: [4800, 2200, 3000],
-            backgroundColor: [
-              "rgba(0, 191, 166, 1)",
-              "rgba(87, 90, 137, 1)",
-              "rgba(63, 61, 86, 1)",
-              "rgba(75, 192, 192, 0.6)",
-              "rgba(153, 102, 255, 0.6)",
-              "rgba(255, 159, 64, 0.6)",
-              "rgba(255, 99, 132, 0.6)",
-            ],
-          },
-        ],
-      },
+      chartData: chartData,
+      tweetInfo: tweetInfo
     });
   }
 
@@ -423,17 +450,17 @@ export default class Search extends Component {
                   location="This Week"
                   legendPosition="bottom"
                 />
-                <ChartBar
+                {/* <ChartBar
                   chartData={this.state.chartData}
                   location="This Week"
                   legendPosition="bottom"
-                />
+                /> */}
               </div>
             </div>
           </div>
         </section>
-        {/* <Tweet url="https://twitter.com/DSC_Charusat/status/1308349414763708417" />
-            <Tweet url="https://twitter.com/googledevs/status/1276166471920553988" /> */}
+        <Tweet url="https://twitter.com/DSC_Charusat/status/1308349414763708417" />
+            <Tweet url="https://twitter.com/googledevs/status/1276166471920553988" />
       </>
     );
   }
