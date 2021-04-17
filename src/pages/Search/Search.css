@@ -21,10 +21,77 @@
     max-width: 100%;
     height: auto;
   }
+  .loading{
+    margin-left: 20vw;
+  }
 
-  .chartData{
+  .analysisResult{
     display: none;
   }
+  .pieData{
+    width: 100%;
+  }
+  .pieChart{
+    width: 70%;
+    float:left;
+  }
+  .piePercentage{
+    width: 30%;
+    float: right;
+    margin-top: 10vh;
+    font-family: Poppins;
+    font-size: 1.1rem;
+    text-align: left;
+    line-height: 37px;
+  }
+  .positiveSquare{
+    color:#00BFA6;
+    padding-right:7px;
+  }
+  .neutralSquare{
+    color:#575A89;
+    padding-right:7px;
+  }
+  .negativeSquare{
+    color:#3F3D56;
+    padding-right:7px;
+  }
+  .downloadreport{
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-top: 1.1vh;
+    line-height: 37px;
+  }
+  .reportlink{
+    color: #00BFA6;
+    cursor: pointer;
+    text-decoration: underline,bold;
+    font-weight: 400;
+  }
+  .top5PositiveTitle{
+    text-align:left;
+    font-size: 1.3rem;
+    font-weight: 400;
+    padding-left:.8vw ;
+    border-left: 7px solid #00BFA6;
+    font-weight: bold;
+    margin-top: 20vh;
+    margin-bottom: 3vh;
+  }
+  .top5NegativeTitle{
+    text-align:left;
+    font-size: 1.3rem;
+    font-weight: 400;
+    padding-left:.8vw ;
+    border-left: 7px solid #3F3D56;
+    font-weight: bold;
+    margin-bottom: 3vh;
+    margin-top: 3vh;
+  }
+  .showPositiveNegativeTweets{
+    display: none;
+  }
+
   @media screen and (max-width: 1000px) {
     .column {
       width: 100%;
@@ -35,7 +102,43 @@
     }
     .right {
       top: 50px;
-      padding-left: 20px;
+      padding: 0;
+      /* padding-left: 20px; */
+    }
+    .pieChart{
+      width: 100%;
+    }
+    .piePercentage{
+      width: 100%;
+      text-align: center;
+      margin-top: 2vh;
+      font-size: 1rem;
+    }
+    .top5PositiveTitle{
+      margin-top: 3vh;
+      margin-bottom: 3vh;
+      text-align: center;
+      border : 0;
+    }
+    .top5positivetweets{
+      margin: auto;
+    }
+    .leftborderpositivetitle{
+      border-left: 7px solid #00BFA6;
+      padding-left:.8vw ;
+    }
+    .top5NegativeTitle{
+      margin-top: 3vh;
+      margin-bottom: 3vh;
+      text-align: center;
+      border : 0;
+    }
+    .top5negativetweets{
+      margin: auto;
+    }
+    .leftbordernegativetitle{
+      border-left: 7px solid #3F3D56;
+      padding-left:.8vw ;
     }
   }
 
@@ -43,10 +146,11 @@
     .left {
       padding: 0px 30px 10px 30px;
     }
-    .right {
+    /* .right {
       padding-top: 20px;
-    }
+    } */
   }
+  
 
   @keyframes text {
     from {

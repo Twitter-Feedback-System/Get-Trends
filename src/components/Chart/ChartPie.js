@@ -12,7 +12,7 @@ class Chart extends Component{
   static defaultProps = {
     displayTitle:true,
     displayLegend: true,
-    legendPosition:'right',
+    legendPosition:'top',
     location:'Tweet'
   }
 
@@ -24,8 +24,8 @@ class Chart extends Component{
           options={{
             title:{
               display:this.props.displayTitle,
-              text:'Analysis Report '+this.props.location,
-              fontSize:25
+              // text:'Analysis Report '+this.props.location,
+              fontSize:20
             },
             legend:{
               display:this.props.displayLegend,

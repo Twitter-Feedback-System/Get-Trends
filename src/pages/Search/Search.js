@@ -5,10 +5,14 @@ import Button from "../../components/Button/Button";
 import "./Search.css";
 import Input from "../../components/Input/Input";
 import Tweet from '../../components/Tweet/Tweet';
+
 // import Chart from '../../components/Chart/Chart';
 import ChartPie from "../../components/Chart/ChartPie";
 // import ChartBar from "../../components/Chart/ChartBar";
 import { MinPriorityQueue } from '@datastructures-js/priority-queue';
+import ReactLoading from "react-loading";
+import Loader from '../../components/Loader/Loader'
+
 
 const menus = [
   { text: "Home", link: "home" },
@@ -39,26 +43,65 @@ export default class Search extends Component {
       },
 
       tweetInfo: [],
+      loading: false,
+      positiveTweetsInfo: [],
+      negativeTweetsInfo: [],
+      polarity: [],
+      positive: 0 ,
+      negative: 0,
+      neutral: 0,
     };
+
 
     this.refers = {
       searchKey: createRef(),
       tweetCount: createRef(),
       searchSVG: createRef(),
-      chartData: createRef(),
+      getResult: createRef(),
+      showPositiveNegativeTweets: createRef(),
     };
 
     this.top5PositiveTweets = new MinPriorityQueue();
     this.top5NegativeTweets = new MinPriorityQueue();
 
     this.handleSearch = this.handleSearch.bind(this);
-    this.hideAndShow = this.hideAndShow.bind(this);
+    this.hideSvg= this.hideSvg.bind(this);
+    this.showResult= this.showResult.bind(this);
+    this.hideResult= this.hideResult.bind(this);
+    this.showPositiveNegativeTweets = this.showPositiveNegativeTweets.bind(this);
     this.getResponse = this.getResponse.bind(this);
     this.getChartData = this.getChartData.bind(this);
     this.manageHeaps = this.manageHeaps.bind(this);
   }
 
   handleSearch(event) {
+    this.hideResult();
+    this.top5PositiveTweets.clear();
+    this.top5NegativeTweets.clear();
+    this.setState({
+      tweetInfo: [],
+      positiveTweetsInfo: [],
+      negativeTweetsInfo: [],
+      polarity: [],
+      positive: 0 ,
+      negative: 0,
+      neutral: 0,
+    });
+    if (!this.refers.searchKey.current.value.trim()) {
+      alert('Please Enter Keyword/Tag');
+      return;
+    }
+    if (isNaN(this.refers.tweetCount.current.value)) {
+      alert('No of tweets can only be number');
+      return;
+    }
+
+    if (!this.refers.tweetCount.current.value) {
+      alert('Please Enter no of tweets');
+      return;
+    }
+    this.hideSvg(event);
+    this.setState({loading: true});
     const data = {
       header: {
         type: "GET",
@@ -70,18 +113,25 @@ export default class Search extends Component {
     };
 
     this.props.clientSocket.sendRequest(data);
+
   }
 
   getResponse(data) {
     let tweetInfo = this.state.tweetInfo;
+    
     tweetInfo.push(data);
     
     this.manageHeaps({polarity: data.body.tweet['polarity'], polarityScore: data.body.tweet['polarity_score'], url: data.body.tweet['embed_url']});
     this.getChartData(data.body['total_polarity'], tweetInfo);
+    this.setState({loading: false});
+    this.showResult();
+    this.showPositiveNegativeTweets()
+    // console.log(data.body.tweet);
   }
 
   componentDidMount() {
     this.props.clientSocket.setSearchCallback(this.getResponse);
+    
   }
 
   manageHeaps({polarity, polarityScore, url}) {
@@ -89,14 +139,20 @@ export default class Search extends Component {
       this.top5PositiveTweets.enqueue(url, polarityScore);
       if (this.top5PositiveTweets.size() > 5) {
         this.top5PositiveTweets.dequeue();
-        console.log(`Positive: ${this.top5PositiveTweets.back().element}`);
+        // console.log(`Positive: ${this.top5PositiveTweets.element}`);
+        
       }
+     
+      // this.state.positiveTweetsInfo = this.top5PositiveTweets.toArray();
+      // console.log(this.positiveTweetsInfo );
     } else if (polarity === 'negative') {
       this.top5NegativeTweets.enqueue(url, polarityScore);
       if (this.top5NegativeTweets.size() > 5) {
         this.top5NegativeTweets.dequeue();
-        console.log(`Negative: ${this.top5NegativeTweets.back().element}`);
+        // console.log(this.top5NegativeTweets.toArray());
       }
+      // this.negativeTweetsInfo = this.top5NegativeTweets.toArray();
+      // console.log(this.negativeTweetsInfo );
     }
   }
 
@@ -106,10 +162,13 @@ export default class Search extends Component {
     
     polarity = {
       positive: parseFloat(polarity.positive * 1.0 / sum).toFixed(2)  * 100,
-      neutral: parseFloat(polarity.neutral * 1.0 / sum).toFixed(2)  * 100,
-      negative: parseFloat(polarity.negative * 1.0 / sum).toFixed(2)  * 100,
+      neutral: parseFloat(polarity.neutral * 1.0 / sum).toFixed(2)  * 100 ,
+      negative: parseFloat(polarity.negative * 1.0 / sum).toFixed(2)  * 100 ,
     }
-
+    
+    this.setState({positive : polarity.positive});
+    this.setState({neutral : polarity.neutral});
+    this.setState({negative : polarity.negative});
     chartData.datasets[0].data = [polarity.positive, polarity.neutral, polarity.negative];
     this.setState({
       chartData: chartData,
@@ -127,12 +186,12 @@ export default class Search extends Component {
               <div className="form-wrapper">
                 <form className="form">
                   <Input
-                    placeholder="Enter keyword"
+                    placeholder="Enter Keyword/Tag to search about"
                     icon="fas fa-search"
                     ref={this.refers.searchKey}
                   />
                   <Input
-                    placeholder="Enter no of tweets"
+                    placeholder="Enter how many tweets to search"
                     icon="fas fa-hashtag"
                     ref={this.refers.tweetCount}
                   />
@@ -140,11 +199,23 @@ export default class Search extends Component {
               </div>
               <br></br>
 
-              <div className="sensorBtn" onClick={this.hideAndShow}>
+              {/* <div className="sensorBtn" onClick={this.hideAndShow}> */}
+              <div className="sensorBtn">
                 <Button text="Search" onClick={this.handleSearch}></Button>
               </div>
             </div>
+                  
             <div className="column right">
+              { this.state.loading ? (
+                  <>
+                    <Loader/>
+                    <ReactLoading className="loading" type={"bars"} color={"#00BFA6"} height={'8%'} width={'8%'} />
+                   </>
+                  ) : (
+                    <>
+                    </>
+                )
+              }
               <svg
                 className="searchSVG"
                 width="911"
@@ -443,34 +514,89 @@ export default class Search extends Component {
                   </clipPath>
                 </defs>
               </svg>
-
-              <div className="chartData" ref={this.refers.chartData}>
-                <ChartPie
-                  chartData={this.state.chartData}
-                  location="This Week"
-                  legendPosition="bottom"
-                />
-                {/* <ChartBar
-                  chartData={this.state.chartData}
-                  location="This Week"
-                  legendPosition="bottom"
-                /> */}
-              </div>
+                <div className="analysisResult" ref={this.refers.getResult}>
+                    <div className="pieData">
+                      <div className="pieChart">
+                      <ChartPie 
+                        chartData={this.state.chartData}
+                        location="This Week"
+                        legendPosition="bottom"
+                      />
+                      </div>
+                      <div className="piePercentage">
+                          <p><span>
+                          <i className="fas fa-square positiveSquare"></i>
+                            </span>Positive Tweets : {this.state.positive}%</p>
+                          <p><span>
+                          <i className="fas fa-square neutralSquare"></i>
+                            </span>Neutral Tweets : {this.state.neutral}%</p>
+                          <p><span>
+                          <i className="fas fa-square negativeSquare"></i>
+                            </span>Negative Tweets : {this.state.negative}%</p>
+                      </div>
+                        <div className="downloadreport">
+                          <p>Download Analysis Report : 
+                          <span className="reportlink"> click here...</span></p>
+                        </div>
+                    </div>
+                    
+                    
+                  {/* <ChartBar
+                    chartData={this.state.chartData}
+                    location="This Week"
+                    legendPosition="bottom"
+                  /> */}
+                </div>
+                <div className="showPositiveNegativeTweets" ref={this.refers.showPositiveNegativeTweets}>
+                  <div className="top5positivetweets">
+                      <p className="top5PositiveTitle"><span className="leftborderpositivetitle">Top 5 positive tweets</span></p>
+                      {console.log(this.top5PositiveTweets.size())}
+                      {this.top5PositiveTweets.toArray().map((obj,index)=>{
+                      // console.log(obj.element);
+                      return <Tweet key={`tweet-${index}`} url={obj.element}/>
+                      })}
+                  </div>
+                                  
+                  <div className="top5negativetweets">
+                      <p className="top5NegativeTitle"><span className="leftbordernegativetitle">Top 5 Negative tweets</span></p>
+                      {this.top5NegativeTweets.toArray().map((obj,index)=>{
+                      // console.log(obj.element);
+                      return <Tweet key={`tweet-${index}`} url={obj.element}/>
+                      })}
+                  </div>
+                </div>      
+                  
             </div>
+                            
+              
           </div>
+          
         </section>
-        <Tweet url="https://twitter.com/DSC_Charusat/status/1308349414763708417" />
-            <Tweet url="https://twitter.com/googledevs/status/1276166471920553988" />
+        
+        {/* <Tweet url="https://twitter.com/DSC_Charusat/status/1308349414763708417" />
+        <Tweet url="https://twitter.com/googledevs/status/1276166471920553988" /> */}
+            
       </>
     );
   }
 
-  hideAndShow(event) {
+  hideSvg(event) {
     event.stopPropagation();
     let varHide = this.refers.searchSVG;
-    let varShow = this.refers.chartData;
-
     varHide.current.style.display = "none";
+  }
+  showResult() {
+    let varShow = this.refers.getResult;
+    varShow.current.style.display = "block";
+  }
+  hideResult() {
+    let varHide = this.refers.getResult;
+    varHide.current.style.display = "none";
+    let varHide2 = this.refers.showPositiveNegativeTweets;
+    varHide2.current.style.display = "none";
+  }
+  showPositiveNegativeTweets(){
+    let varShow = this.refers.showPositiveNegativeTweets;
     varShow.current.style.display = "block";
   }
 }

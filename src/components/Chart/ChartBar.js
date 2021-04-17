@@ -25,7 +25,7 @@ class Chart extends Component{
             title:{
               display:this.props.displayTitle,
               text:'Analysis Report '+this.props.location,
-              fontSize:25
+              fontSize:20
             },
             legend:{
               display:this.props.displayLegend,
@@ -33,8 +33,6 @@ class Chart extends Component{
             }
           }}
         />
-
-        
       </div>
     )
   }
