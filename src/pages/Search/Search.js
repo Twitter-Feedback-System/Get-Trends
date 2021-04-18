@@ -8,6 +8,7 @@ import Tweet from '../../components/Tweet/Tweet';
 
 // import Chart from '../../components/Chart/Chart';
 import ChartPie from "../../components/Chart/ChartPie";
+import ChartLine from "../../components/Chart/ChartLine"
 // import ChartBar from "../../components/Chart/ChartBar";
 import { MinPriorityQueue } from '@datastructures-js/priority-queue';
 import ReactLoading from "react-loading";
@@ -41,7 +42,8 @@ export default class Search extends Component {
           },
         ],
       },
-
+      chartLineData :['50','20','80','45','90','150','60'],
+      chartLineLabel :[],
       tweetInfo: [],
       loading: false,
       positiveTweetsInfo: [],
@@ -72,13 +74,27 @@ export default class Search extends Component {
     this.getResponse = this.getResponse.bind(this);
     this.getChartData = this.getChartData.bind(this);
     this.manageHeaps = this.manageHeaps.bind(this);
+    this.currentWeek = this.currentWeek.bind(this);
+    // this.getTrendTweetsCount = this.getTrendTweetsCount(this);
   }
-
+  currentWeek(){
+     
+      for (let i = 6; i >= 0; i--) {
+        let curr = new Date
+        let first = curr.getDate() - i 
+        let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
+        this.state.chartLineLabel.push(day)
+      }
+      console.log(this.state.chartLineLabel);
+  }
   handleSearch(event) {
+    this.currentWeek();
     this.hideResult();
     this.top5PositiveTweets.clear();
     this.top5NegativeTweets.clear();
     this.setState({
+      chartLineData :[],
+      chartLineLabel :[],
       tweetInfo: [],
       positiveTweetsInfo: [],
       negativeTweetsInfo: [],
@@ -125,6 +141,7 @@ export default class Search extends Component {
     this.getChartData(data.body['total_polarity'], tweetInfo);
     this.setState({loading: false});
     this.showResult();
+    // this.getTrendTweetsCount();
     this.showPositiveNegativeTweets()
     // console.log(data.body.tweet);
   }
@@ -546,11 +563,16 @@ export default class Search extends Component {
                     location="This Week"
                     legendPosition="bottom"
                   /> */}
+                  <div className="chartLine"  >
+                    <ChartLine chartLineData={this.state.chartLineData} chartLineLabel={this.state.chartLineLabel} />
+                  </div>
+                  
                 </div>
+                
                 <div className="showPositiveNegativeTweets" ref={this.refers.showPositiveNegativeTweets}>
                   <div className="top5positivetweets">
                       <p className="top5PositiveTitle"><span className="leftborderpositivetitle">Top 5 positive tweets</span></p>
-                      {console.log(this.top5PositiveTweets.size())}
+                      {/* {console.log(this.top5PositiveTweets.size())} */}
                       {this.top5PositiveTweets.toArray().map((obj,index)=>{
                       // console.log(obj.element);
                       return <Tweet key={`tweet-${index}`} url={obj.element}/>

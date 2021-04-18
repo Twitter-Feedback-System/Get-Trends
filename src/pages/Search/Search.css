@@ -35,6 +35,11 @@
     width: 70%;
     float:left;
   }
+  .chartLine{
+    margin-top: 20vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
   .piePercentage{
     width: 30%;
     float: right;
@@ -75,7 +80,7 @@
     padding-left:.8vw ;
     border-left: 7px solid #00BFA6;
     font-weight: bold;
-    margin-top: 20vh;
+    margin-top: 3vh;
     margin-bottom: 3vh;
   }
   .top5NegativeTitle{
@@ -107,6 +112,11 @@
     }
     .pieChart{
       width: 100%;
+    }
+    .chartLine{
+      margin-top: 5vh;
+      padding-left: 6vw;
+      padding-right: 6vw;
     }
     .piePercentage{
       width: 100%;
