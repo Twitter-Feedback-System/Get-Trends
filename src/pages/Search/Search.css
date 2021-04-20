@@ -96,6 +96,14 @@
   .showPositiveNegativeTweets{
     display: none;
   }
+  .tweetFetchCount{
+    border-left: 7px solid #00BFA6;;
+    padding-left:.8vw ;
+    background: rgba(77, 210, 193, 0.4);
+    padding: .5vw;
+    font-size: 1.1rem;
+    line-height: 37px;
+  }
 
   @media screen and (max-width: 1000px) {
     .column {

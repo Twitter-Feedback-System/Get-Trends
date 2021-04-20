@@ -94,6 +94,7 @@ export default class Search extends Component {
     this.hideResult();
     this.top5PositiveTweets.clear();
     this.top5NegativeTweets.clear();
+    this.tweetCount = 0;
     this.totalTweets = 0;
     this.setState({
       chartLineData :[],
@@ -224,14 +225,15 @@ export default class Search extends Component {
                   <>
                     <Loader/>
                     <ReactLoading className="loading" type={"bars"} color={"#00BFA6"} height={'8%'} width={'8%'} />
+                    <div><span className="tweetFetchCount">Tweets Fetched {this.tweetCount}/{this.totalTweets}</span>
+                    </div>
                    </>
                   ) : (
                     <>
                     </>
                 )
               }
-              <div className="tweetFetchCount"><p>Tweets Fetched {this.tweetCount}/{this.totalTweets}</p>
-              </div>
+              
               <svg
                 className="searchSVG"
                 width="911"
@@ -531,6 +533,8 @@ export default class Search extends Component {
                 </defs>
               </svg>
                 <div className="analysisResult" ref={this.refers.getResult}>
+                  <div><span className="tweetFetchCount">Tweets Fetched {this.tweetCount}/{this.totalTweets}</span>
+                  </div>
                     <div className="pieData">
                       <div className="pieChart">
                       <ChartPie 
@@ -572,18 +576,38 @@ export default class Search extends Component {
                   <div className="top5positivetweets">
                       <p className="top5PositiveTitle"><span className="leftborderpositivetitle">Top 5 positive tweets</span></p>
                       {/* {console.log(this.top5PositiveTweets.size())} */}
-                      {this.top5PositiveTweets.toArray().map((obj,index)=>{
-                      // console.log(obj.element);
-                      return <Tweet key={`tweet-${index}`} url={obj.element}/>
-                      })}
+                      {
+                        this.tweetCount != this.totalTweets ? 
+                        (
+                          <ReactLoading className="loading" type={"bars"} color={"#00BFA6"} height={'8%'} width={'8%'} />
+                        )
+                        :
+                        (
+                          this.top5PositiveTweets.toArray().map((obj,index)=>{
+                            // console.log(obj.element);
+                            return <Tweet key={`tweet-${index}`} url={obj.element}/>
+                            })
+                        )
+                      }
+                      
                   </div>
                                   
                   <div className="top5negativetweets">
                       <p className="top5NegativeTitle"><span className="leftbordernegativetitle">Top 5 Negative tweets</span></p>
-                      {this.top5NegativeTweets.toArray().map((obj,index)=>{
-                      // console.log(obj.element);
-                      return <Tweet key={`tweet-${index}`} url={obj.element}/>
-                      })}
+                      {
+                        this.tweetCount != this.totalTweets ? 
+                        (
+                          <ReactLoading className="loading" type={"bars"} color={"#00BFA6"} height={'8%'} width={'8%'} />
+                        )
+                        :
+                        (
+                          this.top5NegativeTweets.toArray().map((obj,index)=>{
+                            // console.log(obj.element);
+                            return <Tweet key={`tweet-${index}`} url={obj.element}/>
+                            })
+                        )
+                      }
+                      
                   </div>
                 </div>      
                   
