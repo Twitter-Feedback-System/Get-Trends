@@ -14,7 +14,6 @@ import { MinPriorityQueue } from '@datastructures-js/priority-queue';
 import ReactLoading from "react-loading";
 import Loader from '../../components/Loader/Loader'
 
-
 const menus = [
   { text: "Home", link: "home" },
   { text: "Search", link: "search" },
@@ -66,6 +65,7 @@ export default class Search extends Component {
 
     this.top5PositiveTweets = new MinPriorityQueue();
     this.top5NegativeTweets = new MinPriorityQueue();
+    this.tweetCount = 0;
 
     this.handleSearch = this.handleSearch.bind(this);
     this.hideSvg= this.hideSvg.bind(this);
@@ -78,21 +78,23 @@ export default class Search extends Component {
     this.currentWeek = this.currentWeek.bind(this);
     // this.getTrendTweetsCount = this.getTrendTweetsCount(this);
   }
+
   currentWeek(){
-     
       for (let i = 6; i >= 0; i--) {
-        let curr = new Date
+        let curr = new Date();
         let first = curr.getDate() - i 
         let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
         this.state.chartLineLabel.push(day)
       }
       // console.log(this.state.chartLineLabel);
   }
+
   handleSearch(event) {
     this.currentWeek();
     this.hideResult();
     this.top5PositiveTweets.clear();
     this.top5NegativeTweets.clear();
+    this.totalTweets = 0;
     this.setState({
       chartLineData :[],
       chartLineLabel :[],
@@ -104,19 +106,23 @@ export default class Search extends Component {
       negative: 0,
       neutral: 0,
     });
+    
     if (!this.refers.searchKey.current.value.trim()) {
       alert('Please Enter Keyword/Tag');
       return;
     }
+
     if (isNaN(this.refers.tweetCount.current.value)) {
       alert('No of tweets can only be number');
       return;
     }
 
     if (!this.refers.tweetCount.current.value) {
-      alert('Please Enter no of tweets');
+      alert('Please Enter No of Tweets');
       return;
     }
+
+    this.totalTweets = parseInt(this.refers.tweetCount.current.value);
     this.hideSvg(event);
     this.setState({loading: true});
     const data = {
@@ -130,21 +136,19 @@ export default class Search extends Component {
     };
 
     this.props.clientSocket.sendRequest(data);
-
   }
 
   getResponse(data) {
     let tweetInfo = this.state.tweetInfo;
-    
+    this.tweetCount = data.body.tweet["id"];
+
     tweetInfo.push(data);
     
     this.manageHeaps({polarity: data.body.tweet['polarity'], polarityScore: data.body.tweet['polarity_score'], url: data.body.tweet['embed_url']});
     this.getChartData(data.body['total_polarity'], tweetInfo);
     this.setState({loading: false});
     this.showResult();
-    // this.getTrendTweetsCount();
-    this.showPositiveNegativeTweets()
-    // console.log(data.body.tweet);
+    this.showPositiveNegativeTweets();
   }
 
   componentDidMount() {
@@ -157,20 +161,12 @@ export default class Search extends Component {
       this.top5PositiveTweets.enqueue(url, polarityScore);
       if (this.top5PositiveTweets.size() > 5) {
         this.top5PositiveTweets.dequeue();
-        // console.log(`Positive: ${this.top5PositiveTweets.element}`);
-        
       }
-     
-      // this.state.positiveTweetsInfo = this.top5PositiveTweets.toArray();
-      // console.log(this.positiveTweetsInfo );
     } else if (polarity === 'negative') {
       this.top5NegativeTweets.enqueue(url, polarityScore);
       if (this.top5NegativeTweets.size() > 5) {
         this.top5NegativeTweets.dequeue();
-        // console.log(this.top5NegativeTweets.toArray());
       }
-      // this.negativeTweetsInfo = this.top5NegativeTweets.toArray();
-      // console.log(this.negativeTweetsInfo );
     }
   }
 
@@ -234,7 +230,7 @@ export default class Search extends Component {
                     </>
                 )
               }
-              <div className="tweetFetchCount"><p>Tweets Processing ...{this.state.tweetFetchCount}</p>
+              <div className="tweetFetchCount"><p>Tweets Fetched {this.tweetCount}/{this.totalTweets}</p>
               </div>
               <svg
                 className="searchSVG"
@@ -556,7 +552,7 @@ export default class Search extends Component {
                       </div>
                         <div className="downloadreport">
                           <p>Download Analysis Report : 
-                          <span className="reportlink"> click here...</span></p>
+                          <a className="reportlink" href={`localhost:5000/archive/${this.props.clientSocket.sessionId}.zip`}> click here...</a></p>
                         </div>
                     </div>
                     
