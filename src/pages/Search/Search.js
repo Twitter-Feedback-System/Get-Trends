@@ -52,6 +52,7 @@ export default class Search extends Component {
       positive: 0 ,
       negative: 0,
       neutral: 0,
+      tweetFetchCount : 0
     };
 
 
@@ -85,7 +86,7 @@ export default class Search extends Component {
         let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
         this.state.chartLineLabel.push(day)
       }
-      console.log(this.state.chartLineLabel);
+      // console.log(this.state.chartLineLabel);
   }
   handleSearch(event) {
     this.currentWeek();
@@ -233,6 +234,8 @@ export default class Search extends Component {
                     </>
                 )
               }
+              <div className="tweetFetchCount"><p>Tweets Processing ...{this.state.tweetFetchCount}</p>
+              </div>
               <svg
                 className="searchSVG"
                 width="911"
