@@ -225,7 +225,7 @@ export default class Search extends Component {
                   <>
                     <Loader/>
                     <ReactLoading className="loading" type={"bars"} color={"#00BFA6"} height={'8%'} width={'8%'} />
-                    <div><span className="tweetFetchCount">Tweets Fetched {this.tweetCount}/{this.totalTweets}</span>
+                    <div className="tweetFetch"><span className="tweetFetchCount">Tweets Fetched {this.tweetCount}/{this.totalTweets}</span>
                     </div>
                    </>
                   ) : (
@@ -533,7 +533,23 @@ export default class Search extends Component {
                 </defs>
               </svg>
                 <div className="analysisResult" ref={this.refers.getResult}>
-                  <div><span className="tweetFetchCount">Tweets Fetched {this.tweetCount}/{this.totalTweets}</span>
+                  <div className="tweetFetch">
+                    <span className="tweetFetchCount">Tweets Fetched {this.tweetCount}/{this.totalTweets}
+                    </span>
+                    <span>
+                    {
+                      this.tweetCount != this.totalTweets ? 
+                      (
+                        <ReactLoading className="loading loadingCount" type={"cubes"} color={"#00BFA6"} height={'5%'} width={'8%'} />
+                      ):
+                      (
+                       
+                        <>
+                        </>
+                      
+                      )
+                    }
+                    </span>
                   </div>
                     <div className="pieData">
                       <div className="pieChart">
@@ -553,6 +569,46 @@ export default class Search extends Component {
                           <p><span>
                           <i className="fas fa-square negativeSquare"></i>
                             </span>Negative Tweets : {this.state.negative}%</p>
+                          {
+                            // this.tweetCount == this.totalTweets ? 
+                            // (
+                              this.state.positive > this.state.neutral ?
+                              (
+                                this.state.positive > this.state.negative ?
+                                (
+                                  <p className="overallResult">Over all Analysis : 
+                                    <span className="overallResultPositive"> Positive </span>
+                                  </p>
+                                )
+                                :
+                                (
+                                  <p className="overallResult">Over all Analysis : 
+                                    <span className="overallResultNegative"> Negative </span>
+                                  </p>
+                                )
+                              )
+                              :
+                              (
+                                this.state.neutral > this.state.negative ?
+                                (
+                                  <p className="overallResult">Over all Analysis : 
+                                    <span className="overallResultNeutral"> Neutral </span>
+                                  </p>
+                                )
+                                :
+                                (
+                                  <p className="overallResult">Over all Analysis : 
+                                    <span className="overallResultNegative"> Negative </span>
+                                  </p>
+                                )
+                              )
+                            // )
+                            // :
+                            // (
+                            //   <>
+                            //   </>
+                            // )
+                          }
                       </div>
                         <div className="downloadreport">
                           <p>Download Analysis Report : 
@@ -579,7 +635,7 @@ export default class Search extends Component {
                       {
                         this.tweetCount != this.totalTweets ? 
                         (
-                          <ReactLoading className="loading" type={"bars"} color={"#00BFA6"} height={'8%'} width={'8%'} />
+                          <ReactLoading className="loadingTwees" type={"bars"} color={"#00BFA6"} height={'8%'} width={'8%'} />
                         )
                         :
                         (
@@ -597,7 +653,7 @@ export default class Search extends Component {
                       {
                         this.tweetCount != this.totalTweets ? 
                         (
-                          <ReactLoading className="loading" type={"bars"} color={"#00BFA6"} height={'8%'} width={'8%'} />
+                          <ReactLoading className="loadingTwees" type={"bars"} color={"#00BFA6"} height={'8%'} width={'8%'} />
                         )
                         :
                         (

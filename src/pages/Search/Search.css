@@ -22,9 +22,14 @@
     height: auto;
   }
   .loading{
-    margin-left: 20vw;
+    margin: auto;
   }
-
+  .loadingTwees{
+    margin-left: 5vw;
+  }
+  .loadingCount{
+    padding-top: 1vh;
+  }
   .analysisResult{
     display: none;
   }
@@ -66,6 +71,7 @@
     font-weight: 400;
     margin-top: 1.1vh;
     line-height: 37px;
+    font-weight: bold;
   }
   .reportlink{
     color: #00BFA6;
@@ -96,15 +102,40 @@
   .showPositiveNegativeTweets{
     display: none;
   }
+  .tweetFetch{
+    margin: 2vh 0 1vh 0;
+  }
   .tweetFetchCount{
-    border-left: 7px solid #00BFA6;;
+    border-left: 7px solid #00BFA6;
     padding-left:.8vw ;
     background: rgba(77, 210, 193, 0.4);
     padding: .5vw;
     font-size: 1.1rem;
     line-height: 37px;
   }
-
+  .overallResult{
+    margin: .8vh 0 .8vh 0;
+    font-weight: bold;
+  }
+  .overallResultPositive{
+    background-color: #00BFA6;
+    padding: 4px;
+    margin-left: .5vw;
+    border-radius: 5px;
+  }
+  .overallResultNegative{
+    background-color: #3F3D56;
+    padding: 4px;
+    margin-left: .5vw;
+    border-radius: 5px;
+  }
+  .overallResultNeutral{
+    background-color: #575A89;
+    padding: 4px;
+    margin-left: .5vw;
+    border-radius: 5px;
+  }
+  
   @media screen and (max-width: 1000px) {
     .column {
       width: 100%;
@@ -157,6 +188,12 @@
     .leftbordernegativetitle{
       border-left: 7px solid #3F3D56;
       padding-left:.8vw ;
+    }
+    .tweetFetch{
+      margin: 4vh 0 1vh 0;
+    }
+    .loadingTwees{
+      margin : auto;
     }
   }
 

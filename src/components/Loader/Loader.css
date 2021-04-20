@@ -32,6 +32,11 @@
     max-width: 100%;
     height: auto;
   }
+  @media screen and (max-width: 1000px) {
+    .loadingSvg{
+        margin-top: 3vh;
+      }
+}
   #magnifyingGlass{
     animation: rotateGlass 5s infinite linear;
     /* transform-origin: center; */
