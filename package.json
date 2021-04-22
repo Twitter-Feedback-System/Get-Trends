@@ -2,6 +2,9 @@
   "name": "tfss",
   "version": "0.1.0",
   "private": true,
+  "browser": {
+    "net": "net-browserify"
+  },
   "dependencies": {
     "@datastructures-js/priority-queue": "^5.0.2",
     "@testing-library/jest-dom": "^5.11.10",
