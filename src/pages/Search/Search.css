@@ -127,6 +127,21 @@
     margin-left: .5vw;
     border-radius: 5px;
   }
+  .mapTweet {
+    margin-top: 5vh;
+  }
+  .mapTitle{
+    
+    border-left: 7px solid #0071A4;
+    padding-left:.8vw ;
+    background: #C8EEFF;
+    padding: .5vw;
+    font-size: 1.1rem;
+    line-height: 37px;
+  }
+  .loadingTwees{
+    padding: 50px;
+  }
   
   @media screen and (max-width: 1000px) {
     .column {

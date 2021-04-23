@@ -11,6 +11,7 @@ import ReactLoading from "react-loading";
 import Loader from '../../components/Loader/Loader';
 import {countryCodeExists, isEnglish, getCCFromLang, getCCBasic, countryAbbrCount} from './country_codes';
 import SearchPageSVG from "../../components/SearchPageSVG/SearchPageSVG";
+import Map from '../../components/Map/Map'
 
 const menus = [
   { text: "Home", link: "home" },
@@ -185,10 +186,10 @@ export default class Search extends Component {
     }
     
     if (this.tweetCount === this.totalTweets) {
-      // for (const code in this.countryCodeCount) {
-      //   const codeCount = this.countryCodeCount[code];
-      //   console.log(`Key: ${code}, Value: ${codeCount}`);
-      // }
+      for (const code in this.countryCodeCount) {
+        const codeCount = this.countryCodeCount[code];
+        console.log(`Key: ${code}, Value: ${codeCount}`);
+      }
     }
 
     this.manageHeaps({polarity: data.body.tweet['polarity'], polarityScore: data.body.tweet['polarity_score'], url: data.body.tweet['embed_url']});
@@ -371,6 +372,17 @@ export default class Search extends Component {
                 </div>
                 
                 <div className="showPositiveNegativeTweets" ref={this.refers.showPositiveNegativeTweets}>
+                  <p className="mapTweet"><span className="mapTitle">Map</span></p>
+                  {
+                          this.tweetCount !== this.totalTweets ? 
+                          (
+                            <ReactLoading className="loading loadingCount" type={"balls"} color={"#00BFA6"} height={'8%'} width={'8%'} />
+                          )
+                          :
+                          (
+                            <Map className="" mapData={this.countryCodeCount}></Map>
+                          )
+                  }
                   <div className="top5positivetweets">
                       <p className="top5PositiveTitle"><span className="leftborderpositivetitle">Top 5 positive tweets</span></p>
                       {
