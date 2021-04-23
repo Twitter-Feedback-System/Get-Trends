@@ -369,18 +369,21 @@ export default class Search extends Component {
                     <ChartLine chartLineData={this.state.chartLineData} chartLineLabel={this.state.chartLineLabel} />
                   </div>
                   
-                </div>
-                
-                <div className="showPositiveNegativeTweets" ref={this.refers.showPositiveNegativeTweets}>
+                </div>      
+                  
+            </div>
+          </div>
+          <div className="row">
+            <div className="showPositiveNegativeTweets" ref={this.refers.showPositiveNegativeTweets}>
                   <p className="mapTweet"><span className="mapTitle">Map</span></p>
                   {
                           this.tweetCount !== this.totalTweets ? 
                           (
-                            <ReactLoading className="loading loadingCount" type={"balls"} color={"#00BFA6"} height={'8%'} width={'8%'} />
+                            <ReactLoading className="loading loadingCount" type={"cubes"} color={"#00BFA6"} height={'8%'} width={'8%'} />
                           )
                           :
                           (
-                            <Map className="" mapData={this.countryCodeCount}></Map>
+                            <Map mapData={this.countryCodeCount}></Map>
                           )
                   }
                   <div className="top5positivetweets">
@@ -388,7 +391,7 @@ export default class Search extends Component {
                       {
                         this.tweetCount !== this.totalTweets ? 
                         (
-                          <ReactLoading className="loadingTwees" type={"bars"} color={"#00BFA6"} height={'8%'} width={'8%'} />
+                          <ReactLoading className="loading" type={"bars"} color={"#00BFA6"} height={'8%'} width={'8%'} />
                         )
                         :
                         (
@@ -409,7 +412,7 @@ export default class Search extends Component {
                       {
                         this.tweetCount !== this.totalTweets ? 
                         (
-                          <ReactLoading className="loadingTwees" type={"bars"} color={"#00BFA6"} height={'8%'} width={'8%'} />
+                          <ReactLoading className="loading" type={"bars"} color={"#00BFA6"} height={'8%'} width={'8%'} />
                         )
                         :
                         (
@@ -425,13 +428,8 @@ export default class Search extends Component {
                       }
                       
                   </div>
-                </div>      
-                  
+                </div>
             </div>
-                            
-              
-          </div>
-          
         </section>
         
         {/* <Tweet url="https://twitter.com/DSC_Charusat/status/1308349414763708417" />

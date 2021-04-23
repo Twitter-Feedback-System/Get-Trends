@@ -2,7 +2,10 @@
     float: left;
     animation: text 2s ease;
   }
-
+  .row{
+    width: 100%;
+    height: 100%;
+  }
   .left {
     width: 40%;
     padding-left: 80px;
@@ -15,9 +18,6 @@
   }
   .loading{
     margin: auto;
-  }
-  .loadingTwees{
-    margin-left: 5vw;
   }
   .loadingCount{
     padding-top: 1vh;
@@ -72,25 +72,34 @@
     font-weight: 400;
   }
   .top5PositiveTitle{
-    text-align:left;
+    text-align: center;
     font-size: 1.3rem;
     font-weight: 400;
     padding-left:.8vw ;
-    border-left: 7px solid #00BFA6;
+    /* border-left: 7px solid #00BFA6; */
     font-weight: bold;
     margin-top: 3vh;
     margin-bottom: 3vh;
+  }
+  .leftborderpositivetitle{
+    border-left: 7px solid #00BFA6;
+    padding-left:.8vw ;
+  }
+  .leftbordernegativetitle{
+    border-left: 7px solid #3F3D56;
+    padding-left:.8vw ;
   }
   .top5NegativeTitle{
-    text-align:left;
+    text-align:center;
     font-size: 1.3rem;
     font-weight: 400;
     padding-left:.8vw ;
-    border-left: 7px solid #3F3D56;
+    /* border-left: 7px solid #3F3D56; */
     font-weight: bold;
     margin-bottom: 3vh;
     margin-top: 3vh;
   }
+ 
   .showPositiveNegativeTweets{
     display: none;
   }
@@ -128,19 +137,21 @@
     border-radius: 5px;
   }
   .mapTweet {
-    margin-top: 5vh;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 400;
+    padding-left:.8vw ;
+    font-weight: bold;
+    margin-top: 10vh;
+    margin-bottom: 3vh;
   }
   .mapTitle{
-    
     border-left: 7px solid #0071A4;
-    padding-left:.8vw ;
-    background: #C8EEFF;
     padding: .5vw;
     font-size: 1.1rem;
     line-height: 37px;
-  }
-  .loadingTwees{
-    padding: 50px;
+    background: #C8EEFF;
+    padding-left:.8vw ;
   }
   
   @media screen and (max-width: 1000px) {

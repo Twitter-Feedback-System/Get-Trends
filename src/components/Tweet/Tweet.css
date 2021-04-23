@@ -1,6 +1,6 @@
 .twitter-tweet{
     text-align:center;
-    margin-bottom: 2vh;
+    margin: 2.5vh auto 2.5vh auto;
 }
 @media screen and (max-width: 1000px) {
   .twitter-tweet{

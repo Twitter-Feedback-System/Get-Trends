@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { VectorMap } from "react-jvectormap";
-
+import './Map.css'
  class Map extends Component {
     constructor(props) {
         super(props);
@@ -16,14 +16,14 @@ import { VectorMap } from "react-jvectormap";
     render() {
         return (
             <>
-                <div className="mapSvg2">
+                <div className="mapSvg">
                     <VectorMap
                         map={"world_mill"}
                         backgroundColor="transparent"
                         zoomOnScroll={true}
                         containerStyle={{
                         width: "100%",
-                        height: "70vh",
+                        height: "57vh",
                         }}
                         onRegionTipShow={this.handleRegionTip}
                         containerClassName="map"
@@ -51,7 +51,7 @@ import { VectorMap } from "react-jvectormap";
                         regions: [
                             {
                             values: this.state.mapData, 
-                            scale: ['#C8EEFF', '#0071A4'], //your color game's here
+                            scale: ['#C8EEFF', '#0071A4'],
                             legend: {
                                 horizontal: true,
                                 cssClass: 'jvectormap-legend-bg',
@@ -61,7 +61,6 @@ import { VectorMap } from "react-jvectormap";
                             }
                         ]}
                     }
-                        
                     />
                 </div>
             </>
