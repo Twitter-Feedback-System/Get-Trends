@@ -210,7 +210,7 @@
     .tweetFetch{
       margin: 4vh 0 1vh 0;
     }
-    .loadingTwees{
+    .loadingTweets{
       margin : auto;
     }
   }
@@ -222,4 +222,20 @@
     /* .right {
       padding-top: 20px;
     } */
+  }
+
+  .tweet-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .twitter-tweet {
+    width: 30rem;
+  }
+
+  .twitter-tweet-rendered {
+    box-shadow: 0.5rem 0.5rem 2rem rgb(0 0 0 / 20%);
   }

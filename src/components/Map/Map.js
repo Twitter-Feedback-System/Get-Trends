@@ -9,10 +9,11 @@ import './Map.css'
         }
         this.handleRegionTip = this.handleRegionTip.bind(this);
      }
-     
-    handleRegionTip = (e,el, countryCode) => {
+    
+    handleRegionTip = (e, el, countryCode) => {
         el.html(el.html()+' (Tweets : '+this.state.mapData[countryCode]+')');
     };
+    
     render() {
         return (
             <>

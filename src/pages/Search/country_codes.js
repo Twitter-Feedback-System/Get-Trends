@@ -503,7 +503,7 @@ const hasJapanese = (text) => {
   const japanese = /[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]/;
   return japanese.test(text);
 }
-
+    
 const hasKorean = (text) => {
   const korean = /[\uac00-\ud7af]|[\u1100-\u11ff]|[\u3130-\u318f]|[\ua960-\ua97f]|[\ud7b0-\ud7ff]/;
   return korean.test(text);
@@ -597,15 +597,17 @@ const checkCountriesMan = async (location) => {
     return 'ZA';
   } else if (/\bUK\b/gi.test(location) || /\bGB\b/gi.test(location) || /\bscotland\b/gi.test(location) || /\bbritain\b/gi.test(location) || /\bgreat britain\b/gi.test(location) || /\bunited kingdom\b/gi.test(location) || /\bengland\b/gi.test(location) || /\bLDN\b/gi.test(location) || /\blondon\b/gi.test(location) || /\bmanchester\b/gi.test(location)) {
     return 'GB';
-  } else if (/\bUS\b/gi.test(location) || /\bUSA\b/gi.test(location) || /\bunited states\b/gi.test(location) || /\bunited state\b/gi.test(location) || /\bunited states of america\b/gi.test(location) || /\bunited states america\b/gi.test(location) || /\bamerica\b/gi.test(location) || /\bNJ\b/gi.test(location) || /\bNV\b/gi.test(location) || /\bNY\b/gi.test(location) || /\bNYC\b/gi.test(location) || /\bLA\b/gi.test(location) || /\bDC\b/gi.test(location) || /\bD.C\b/gi.test(location) || /\bD.C.\b/gi.test(location) || /\bblvd\b/gi.test(location) || /\bblvd.\b/gi.test(location) || /\bavenue\b/gi.test(location) || /\bbuilding\b/gi.test(location) || /\bstreet\b/gi.test(location) || /\bview\b/gi.test(location) || /\bbay\b/gi.test(location) || /\bocean\b/gi.test(location) || /\bbeach\b/gi.test(location) || /\barea 51\b/gi.test(location) || /\barea51\b/gi.test(location) || /\barea\b/gi.test(location) || /\bstreet\b/gi.test(location) || /\bwall street\b/gi.test(location) || /\bwall st\b/gi.test(location) || /\bwall st.\b/gi.test(location) || /\barea\b/gi.test(location) || /\btx\b/gi.test(location) || /\bfl\b/gi.test(location) || /\btexas\b/gi.test(location) || /\bflorida\b/gi.test(location) || /\bminneapolis\b/gi.test(location) || /\bphiladelphia\b/gi.test(location) || /\bphily\b/gi.test(location) || /\bphilly\b/gi.test(location) || /\bdallas\b/gi.test(location) || /\baustin\b/gi.test(location)) {
+  } else if (/\bUS\b/gi.test(location) || /\bUSA\b/gi.test(location) || /\bunited states\b/gi.test(location) || /\bunited state\b/gi.test(location) || /\bunited states of america\b/gi.test(location) || /\bunited states america\b/gi.test(location) || /\bamerica\b/gi.test(location) || /\bNJ\b/gi.test(location) || /\bNV\b/gi.test(location) || /\bNY\b/gi.test(location) || /\bNYC\b/gi.test(location) || /\bLA\b/gi.test(location) || /\bDC\b/gi.test(location) || /\bD.C\b/gi.test(location) || /\bD.C.\b/gi.test(location) || /\bblvd\b/gi.test(location) || /\bblvd.\b/gi.test(location) || /\bavenue\b/gi.test(location) || /\bbuilding\b/gi.test(location) || /\bstreet\b/gi.test(location) || /\bview\b/gi.test(location) || /\bbay\b/gi.test(location) || /\bocean\b/gi.test(location) || /\bbeach\b/gi.test(location) || /\barea 51\b/gi.test(location) || /\barea51\b/gi.test(location) || /\barea\b/gi.test(location) || /\bstreet\b/gi.test(location) || /\bwall street\b/gi.test(location) || /\bwall st\b/gi.test(location) || /\bwall st.\b/gi.test(location) || /\barea\b/gi.test(location) || /\btx\b/gi.test(location) || /\bfl\b/gi.test(location) || /\btexas\b/gi.test(location) || /\bflorida\b/gi.test(location) || /\bminneapolis\b/gi.test(location) || /\bphiladelphia\b/gi.test(location) || /\bphily\b/gi.test(location) || /\bphilly\b/gi.test(location) || /\bdallas\b/gi.test(location) || /\baustin\b/gi.test(location) || /\bmiami\b/gi.test(location) || /\batlanta\b/gi.test(location) || /\bseattle\b/gi.test(location) || /\bsilicon\b/gi.test(location)) {
     return 'US';
-  } else if (/\bUAE\b/gi.test(location) || /\bemirates\b/gi.test(location) || /\bemirate\b/gi.test(location) || /\bemirati\b/gi.test(location) || /\bunited arab emirates\b/gi.test(location) || /\bunited arab emirate\b/gi.test(location) || /\bunited arab emirati\b/gi.test(location)) {
+  } else if (/\bUAE\b/gi.test(location) || /\bemirates\b/gi.test(location) || /\bemirate\b/gi.test(location) || /\bemirati\b/gi.test(location) || /\bunited arab emirates\b/gi.test(location) || /\bunited arab emirate\b/gi.test(location) || /\bunited arab emirati\b/gi.test(location) || /\bdubai\b/gi.test(location) || /\sharjah\b/gi.test(location)) {
     return 'AE';
   } else if (/\bcanada\b/gi.test(location)) {
     return 'CA';
   } else if (/\bfrance\b/gi.test(location) || /\bparis\b/gi.test(location)) {
     return 'FR';
-  } else if (/\bgermany\b/gi.test(location) || /\bdeutschland\b/gi.test(location)|| /\bberlin\b/gi.test(location)) {
+  } else if (/\bspain\b/gi.test(location) || /\bmadrid\b/gi.test(location) || /\bbarcelona\b/gi.test(location) || /\bcatalan\b/gi.test(location) || /\bcatalonia\b/gi.test(location)) {
+    return 'ES';
+  } else if (/\bgermany\b/gi.test(location) || /\bdeutschland\b/gi.test(location) || /\bberlin\b/gi.test(location) || /\bfrankfurt\b/gi.test(location)) {
     return 'DE';
   } else if (/\bnetherlands\b/gi.test(location) || /\bnetherland\b/gi.test(location) || /\bdutch\b/gi.test(location) || /\bholland\b/gi.test(location)) {
     return 'NL';
@@ -613,19 +615,19 @@ const checkCountriesMan = async (location) => {
     return 'IT';
   } else if (/\bkorea\b/gi.test(location) || /\bseoul\b/gi.test(location)) {
     return 'KR';
-  } else if (/\bjapan\b/gi.test(location) || /\btokyo\b/gi.test(location)) {
+  } else if (/\bjapan\b/gi.test(location) || /\btokyo\b/gi.test(location) || /\bosaka\b/gi.test(location)) {
     return 'JP';
   } else if (/\bchina\b/gi.test(location) || /\bshanghai\b/gi.test(location) || /\bbeijing\b/gi.test(location)) { 
     return 'CN';
   } else if (/\bmyanmar\b/gi.test(location) || /\bRGN\b/gi.test(location) || /\bburma\b/gi.test(location) || /\bmdy\b/gi.test(location) || /\bmandalay\b/gi.test(location)) {
     return 'MM';
-  } else if (/\bsingapore\b/gi.test(location)) {
+  } else if (/\bsingapore\b/gi.test(location) || /\bsingpore\b/gi.test(location)) {
     return 'SG';
   } else if (/\bthailand\b/gi.test(location) || /\bbangkok\b/gi.test(location)) {  
     return 'TH';
   } else if (/\bPK\b/gi.test(location) || /\bPAK\b/gi.test(location) || /\bpakistan\b/gi.test(location) || /\blahore\b/gi.test(location) || /\bkarachi\b/gi.test(location) || /\bislamabad\b/gi.test(location) || /\bmultan\b/gi.test(location) || /\brawalpindi\b/gi.test(location) || /\bsindh\b/gi.test(location) || /\bqueta\b/gi.test(location) || /\bquetta\b/gi.test(location) || /\bkhyber\b/gi.test(location) || /\bpeshawar\b/gi.test(location) || /\bpeshavar\b/gi.test(location) || /\bgilgit\b/gi.test(location) || /\bbaltistan\b/gi.test(location) || /\bbalochistan\b/gi.test(location) || /\bbaloochistan\b/gi.test(location) || /\bbaluchistan\b/gi.test(location)) {
     return 'PK';
-  } else if (/\bIN\b/g.test(location) || /\bIND\b/gi.test(location) || /\bindia\b/gi.test(location) || /\bindian\b/gi.test(location) || /\bbharat\b/gi.test(location) || /\bhind\b/gi.test(location) || /\bhindustan\b/gi.test(location) || /\bhindusthan\b/gi.test(location) || /\baryavarta\b/gi.test(location) || /\bdelhi\b/gi.test(location) || /\bmumbai\b/gi.test(location) || /\bbombay\b/gi.test(location) || /\bchennai\b/gi.test(location) || /\bkolkata\b/gi.test(location) || /\bbanglore\b/gi.test(location) || /\bbangalore\b/gi.test(location) || /\bbengaluru\b/gi.test(location) || /\bdl\b/gi.test(location) || /\bblr\b/gi.test(location) || /\bbhopal\b/gi.test(location) || /\bvishakhapatnam\b/gi.test(location) || /\bvizag\b/gi.test(location) || /\buttar pradesh\b/gi.test(location) || /\bmadhya pradesh\b/gi.test(location) || /\bmadhaya pradesh\b/gi.test(location) || /\buttarpradesh\b/gi.test(location) || /\bmadhyapradesh\b/gi.test(location) || /\bmadhayapradesh\b/gi.test(location) || /\bup\b/gi.test(location) || /\bmp\b/gi.test(location) || /\bpunjab\b/gi.test(location) || /\bassam\b/gi.test(location) || /\bhyderabad\b/gi.test(location) || /\bgujarat\b/gi.test(location) || /\bahmedabad\b/gi.test(location) || /\bjammu\b/gi.test(location) || /\bkashmir\b/gi.test(location) || /\bpalakad\b/gi.test(location) || /\bpalakkad\b/gi.test(location)) { 
+  } else if (/\bIN\b/g.test(location) || /\bIND\b/gi.test(location) || /\bindia\b/gi.test(location) || /\bindian\b/gi.test(location) || /\bbharat\b/gi.test(location) || /\bhind\b/gi.test(location) || /\bhindustan\b/gi.test(location) || /\bhindusthan\b/gi.test(location) || /\baryavarta\b/gi.test(location) || /\bdelhi\b/gi.test(location) || /\bmumbai\b/gi.test(location) || /\bbombay\b/gi.test(location) || /\bchennai\b/gi.test(location) || /\bkolkata\b/gi.test(location) || /\bbanglore\b/gi.test(location) || /\bbangalore\b/gi.test(location) || /\bbengaluru\b/gi.test(location) || /\bdl\b/gi.test(location) || /\bblr\b/gi.test(location) || /\bbhopal\b/gi.test(location) || /\bvishakhapatnam\b/gi.test(location) || /\bvizag\b/gi.test(location) || /\buttar pradesh\b/gi.test(location) || /\bmadhya pradesh\b/gi.test(location) || /\bmadhaya pradesh\b/gi.test(location) || /\buttarpradesh\b/gi.test(location) || /\bmadhyapradesh\b/gi.test(location) || /\bmadhayapradesh\b/gi.test(location) || /\bup\b/gi.test(location) || /\bmp\b/gi.test(location) || /\bpunjab\b/gi.test(location) || /\bassam\b/gi.test(location) || /\bhyderabad\b/gi.test(location) || /\bgujarat\b/gi.test(location) || /\bahmedabad\b/gi.test(location) || /\bjammu\b/gi.test(location) || /\bkashmir\b/gi.test(location) || /\bpalakad\b/gi.test(location) || /\bpalakkad\b/gi.test(location) || /\bprayagraj\b/gi.test(location) || /\bvaranasi\b/gi.test(location) || /\bnowshera\b/gi.test(location) || /\bharyana\b/gi.test(location) || /\bsecunderabad\b/gi.test(location) || /\bbhagyanagar\b/gi.test(location) || /\bkarnavati\b/gi.test(location) || /\blucknow\b/gi.test(location) || /\bdilli\b/gi.test(location) || /\ballahabad\b/gi.test(location) || /\bmysore\b/gi.test(location) || /\bkochi\b/gi.test(location) || /\bcochin\b/gi.test(location) || /\bmadras\b/gi.test(location) || /\bpradesh\b/gi.test(location) || /\bnagar\b/gi.test(location) || /\bbihar\b/gi.test(location) || /\btelangana\b/gi.test(location) || /\bghaziabad\b/gi.test(location) || /\bkanpur\b/gi.test(location) || /\bagra\b/gi.test(location) || /\bguwahati\b/gi.test(location)) { 
     return 'IN';
   } else if (/\bBD\b/gi.test(location) || /\bBND\b/gi.test(location) || /\bbangladesh\b/gi.test(location) || /\bdhaka\b/gi.test(location)) {
     return 'BD';

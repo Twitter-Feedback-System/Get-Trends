@@ -65,6 +65,8 @@ export default class Search extends Component {
     this.top5NegativeTweets = new MinPriorityQueue();
     this.countryCodeCount = countryAbbrCount;
     this.tweetCount = 0;
+    this.currentDate = new Date();
+    this.currentDateString = `${this.currentDate.getDate()}-${this.currentDate.getMonth() + 1}-${this.currentDate.getFullYear()}`;
 
     this.handleSearch = this.handleSearch.bind(this);
     this.hideSvg= this.hideSvg.bind(this);
@@ -74,6 +76,7 @@ export default class Search extends Component {
     this.getResponse = this.getResponse.bind(this);
     this.getChartData = this.getChartData.bind(this);
     this.manageHeaps = this.manageHeaps.bind(this);
+    // this.getLineChartData = this.getLineChartData.bind(this);
     this.currentWeek = this.currentWeek.bind(this);
     this.getCountryCode = this.getCountryCode.bind(this);
   }
@@ -104,14 +107,36 @@ export default class Search extends Component {
     return countryCode;
   }
 
+  // getLineChartData(date) {
+  //   date = new Date(date);
+  //   let dateString = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+  //   let chartLineData = this.state.chartLineData;
+  //   if (dateString === this.currentDateString) {
+  //     dateString = `${date.getHours()}:${date.getMinutes()}`;
+  //     if (Object.hasOwnProperty(dateString)) {
+  //       chartLineData[dateString] += 1;
+  //     } else {
+  //       chartLineData[dateString] = 1;
+  //     }
+  //   } else {
+  //     dateString = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+  //     if (Object.hasOwnProperty(dateString)) {
+  //       chartLineData[dateString] += 1;
+  //     } else {
+  //       chartLineData[dateString] = 1;
+  //     }
+  //   }
+  //   this.setState({chartLineData: chartLineData});
+  // }
+
   currentWeek() {
-      for (let i = 6; i >= 0; i--) {
-        let curr = new Date();
-        let first = curr.getDate() - i 
-        let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
-        this.state.chartLineLabel.push(day)
-      }
-      // console.log(this.state.chartLineLabel);
+    for (let i = 6; i >= 0; i--) {
+      let curr = new Date();
+      let first = curr.getDate() - i 
+      let day = new Date(curr.setDate(first)).toISOString().slice(0, 10)
+      this.state.chartLineLabel.push(day)
+    }
+    // console.log(this.state.chartLineLabel);
   }
 
   handleSearch(event) {
@@ -122,13 +147,12 @@ export default class Search extends Component {
     this.tweetCount = 0;
     this.totalTweets = 0;
     this.setState({
-      chartLineData :[],
-      chartLineLabel :[],
+      chartLineData: {},
       tweetInfo: [],
       positiveTweetsInfo: [],
       negativeTweetsInfo: [],
       polarity: [],
-      positive: 0 ,
+      positive: 0,
       negative: 0,
       neutral: 0,
     });
@@ -169,29 +193,23 @@ export default class Search extends Component {
     let countryCode;
     this.tweetCount = data.body.tweet["id"];
     tweetInfo.push(data);
-    
+    // this.getLineChartData(data.body.tweet['tweet_date']);
+
     if (data.body.tweet['country_code'] === undefined) {
       const location = data.body.tweet['location'].trim();
       if (location !== '' && location !== undefined && location !== null) {
         countryCode = await this.getCountryCode(location);
-        console.log(`${location}: ${countryCode}`);
       }
     } else {
       countryCode = data.body.tweet['country_code'];
-      // console.log(`Tagged Country: ${countryCode}`);
-    }
-    if (countryCode !== undefined && countryCode !== '') {
-      this.countryCodeCount[countryCode] += 1; 
-      // console.log(this.countryCodeCount);
     }
     
-    if (this.tweetCount === this.totalTweets) {
-      for (const code in this.countryCodeCount) {
-        const codeCount = this.countryCodeCount[code];
-        console.log(`Key: ${code}, Value: ${codeCount}`);
-      }
+    if (countryCode !== undefined && countryCode !== '' && this.countryCodeCount.hasOwnProperty(countryCode)) {
+      this.countryCodeCount[countryCode] += 1; 
+    } else if (countryCode !== undefined && countryCode !== '') {
+      this.countryCodeCount[countryCode] = 1;
     }
-
+    
     this.manageHeaps({polarity: data.body.tweet['polarity'], polarityScore: data.body.tweet['polarity_score'], url: data.body.tweet['embed_url']});
     this.getChartData(data.body['total_polarity'], tweetInfo);
     this.setState({loading: false});
@@ -314,8 +332,7 @@ export default class Search extends Component {
                           <i className="fas fa-square negativeSquare"></i>
                             </span>Negative Tweets : {this.state.negative}%</p>
                           {
-                            // this.tweetCount == this.totalTweets ? 
-                            // (
+
                               this.state.positive > this.state.neutral ?
                               (
                                 this.state.positive > this.state.negative ?
@@ -346,17 +363,11 @@ export default class Search extends Component {
                                   </p>
                                 )
                               )
-                            // )
-                            // :
-                            // (
-                            //   <>
-                            //   </>
-                            // )
                           }
                       </div>
                         <div className="downloadreport">
                           <p>Download Analysis Report : 
-                          <a className="reportlink" href={`localhost:5000/archive/${this.props.clientSocket.sessionId}.zip`}> click here...</a></p>
+                          <a className="reportlink" href={`http://localhost:5000/sentiment_analysis.py`} download='abc.zip'> click here...</a></p>
                         </div>
                     </div>
                     
@@ -388,6 +399,7 @@ export default class Search extends Component {
                   }
                   <div className="top5positivetweets">
                       <p className="top5PositiveTitle"><span className="leftborderpositivetitle">Top 5 positive tweets</span></p>
+                      <div className="tweet-wrapper">
                       {
                         this.tweetCount !== this.totalTweets ? 
                         (
@@ -395,20 +407,17 @@ export default class Search extends Component {
                         )
                         :
                         (
-                          this.top5PositiveTweets.toArray().map((obj,index)=>{
-                            // console.log(obj.element);
+                          this.top5PositiveTweets.toArray().map((obj,index) => {
                             return <Tweet key={`tweet-${index}`} url={obj.element}/>
-                            })
+                          })
                         )
-                        // this.top5PositiveTweets.toArray().map((obj,index)=> {
-                        //   return <Tweet key={`tweet-${index}`} url={obj.element}/>
-                        // })
                       }
-                      
+                      </div>
                   </div>
                                   
                   <div className="top5negativetweets">
                       <p className="top5NegativeTitle"><span className="leftbordernegativetitle">Top 5 Negative tweets</span></p>
+                      <div className="tweet-wrapper">
                       {
                         this.tweetCount !== this.totalTweets ? 
                         (
@@ -416,25 +425,16 @@ export default class Search extends Component {
                         )
                         :
                         (
-                          this.top5NegativeTweets.toArray().map((obj,index)=>{
-                            // console.log(obj.element);
+                          this.top5NegativeTweets.toArray().map((obj,index) => {
                             return <Tweet key={`tweet-${index}`} url={obj.element}/>
-                            })
+                          })
                         )
-                        // this.top5NegativeTweets.toArray().map((obj,index)=> {
-                        //   // console.log(obj.element);
-                        //   return <Tweet key={`tweet-${index}`} url={obj.element}/>
-                        // })
                       }
-                      
+                      </div>
                   </div>
                 </div>
             </div>
         </section>
-        
-        {/* <Tweet url="https://twitter.com/DSC_Charusat/status/1308349414763708417" />
-        <Tweet url="https://twitter.com/googledevs/status/1276166471920553988" /> */}
-            
       </>
     );
   }
@@ -448,13 +448,15 @@ export default class Search extends Component {
     let varShow = this.refers.getResult;
     varShow.current.style.display = "block";
   }
+
   hideResult() {
     let varHide = this.refers.getResult;
     varHide.current.style.display = "none";
     let varHide2 = this.refers.showPositiveNegativeTweets;
     varHide2.current.style.display = "none";
   }
-  showPositiveNegativeTweets(){
+
+  showPositiveNegativeTweets() {
     let varShow = this.refers.showPositiveNegativeTweets;
     varShow.current.style.display = "block";
   }
