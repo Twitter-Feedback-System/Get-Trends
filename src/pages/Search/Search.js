@@ -23,6 +23,7 @@ export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      //pie chart data 
       chartData: {
         labels: ["Positive", "Neutral", "Negative"],
         datasets: [
@@ -40,20 +41,20 @@ export default class Search extends Component {
           },
         ],
       },
-      chartLineData :['50','20','80','45','90','150','60'],
+      chartLineData :['50','20','80','45','90','150','60'], //line chart data
       chartLineLabel :[],
-      tweetInfo: [],
+      tweetInfo: [], // All the Tweets information
       loading: false,
-      positiveTweetsInfo: [],
-      negativeTweetsInfo: [],
+      positiveTweetsInfo: [],  //top 5 positive tweets
+      negativeTweetsInfo: [],  //top 5 Negative tweets
       polarity: [],
       positive: 0 ,
       negative: 0,
       neutral: 0,
-      tweetFetchCount : 0
+      tweetFetchCount : 0  
     };
 
-    this.refers = {
+    this.refers = {  //Refs of function
       searchKey: createRef(),
       tweetCount: createRef(),
       searchSVG: createRef(),
@@ -61,14 +62,14 @@ export default class Search extends Component {
       showPositiveNegativeTweets: createRef(),
     };
 
-    this.top5PositiveTweets = new MinPriorityQueue();
-    this.top5NegativeTweets = new MinPriorityQueue();
-    this.countryCodeCount = countryAbbrCount;
+    this.top5PositiveTweets = new MinPriorityQueue(); //priority queue for top 5 Positive Tweets
+    this.top5NegativeTweets = new MinPriorityQueue(); //priority queue for top 5 Negative Tweets
+    this.countryCodeCount = countryAbbrCount;  //Country code of the location of the tweet
     this.tweetCount = 0;
-    this.currentDate = new Date();
+    this.currentDate = new Date();  // Date value for line chart
     this.currentDateString = `${this.currentDate.getDate()}-${this.currentDate.getMonth() + 1}-${this.currentDate.getFullYear()}`;
 
-    this.handleSearch = this.handleSearch.bind(this);
+    this.handleSearch = this.handleSearch.bind(this); //bind these methods to the component
     this.hideSvg= this.hideSvg.bind(this);
     this.showResult= this.showResult.bind(this);
     this.hideResult= this.hideResult.bind(this);
@@ -80,8 +81,8 @@ export default class Search extends Component {
     this.currentWeek = this.currentWeek.bind(this);
     this.getCountryCode = this.getCountryCode.bind(this);
   }
-
-  async getCountryCode(location) {
+  //Calculate country code from loaction of tweet
+  async getCountryCode(location) { 
     let countryCode = await getCCBasic(location);
     if (countryCode !== undefined) return countryCode;
 
@@ -138,7 +139,7 @@ export default class Search extends Component {
     }
     // console.log(this.state.chartLineLabel);
   }
-
+  //Display the result of search
   handleSearch(event) {
     this.currentWeek();
     this.hideResult();
@@ -156,7 +157,7 @@ export default class Search extends Component {
       negative: 0,
       neutral: 0,
     });
-    
+    //alert boxes
     if (!this.refers.searchKey.current.value.trim()) {
       alert('Please Enter Keyword/Tag');
       return;
@@ -187,7 +188,7 @@ export default class Search extends Component {
 
     this.props.clientSocket.sendRequest(data);
   }
-
+  // Get the data from backend
   async getResponse(data) {
     let tweetInfo = this.state.tweetInfo;
     let countryCode;
@@ -220,7 +221,7 @@ export default class Search extends Component {
   componentDidMount() {
     this.props.clientSocket.setSearchCallback(this.getResponse);
   }
-
+  // manage priority queue
   manageHeaps({polarity, polarityScore, url}) {
     if (polarity === 'positive') {
       this.top5PositiveTweets.enqueue(url, polarityScore);
@@ -234,7 +235,7 @@ export default class Search extends Component {
       }
     }
   }
-
+  //data for pie chart
   getChartData(polarity, tweetInfo) {
     const chartData = this.state.chartData;
     const sum = polarity.positive + polarity.neutral + polarity.negative;
@@ -376,7 +377,7 @@ export default class Search extends Component {
                     location="This Week"
                     legendPosition="bottom"
                   /> */}
-                  <div className="chartLine"  >
+                  <div className="chartLine">
                     <ChartLine chartLineData={this.state.chartLineData} chartLineLabel={this.state.chartLineLabel} />
                   </div>
                   
@@ -431,14 +432,14 @@ export default class Search extends Component {
                         )
                       }
                       </div>
-                  </div>
-                </div>
-            </div>
+                    </div>
+              </div>
+          </div>
         </section>
       </>
     );
   }
-
+// hide and show the result of search
   hideSvg(event) {
     event.stopPropagation();
     this.refers.searchSVG.current.hideSvg();
